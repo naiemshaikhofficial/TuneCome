@@ -24,19 +24,26 @@ export function AuthForm({ allowSignup = true, next: defaultNext }: { allowSignu
 
   // 1. Initialize Google GSI library on mount
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window === 'undefined') return
+
+    const tryInit = () => {
       if ((window as any).google) {
         initGoogleOneTap()
-      } else {
-        // Fallback: check every 100ms for Google script availability
-        const interval = setInterval(() => {
-          if ((window as any).google) {
-            initGoogleOneTap()
-            clearInterval(interval)
-          }
-        }, 100)
-        return () => clearInterval(interval)
+        return true
       }
+      return false
+    }
+
+    if (!tryInit()) {
+      // Wait for the script to load with a timeout
+      let elapsed = 0
+      const interval = setInterval(() => {
+        elapsed += 200
+        if (tryInit() || elapsed > 8000) {
+          clearInterval(interval)
+        }
+      }, 200)
+      return () => clearInterval(interval)
     }
   }, [mode])
 
@@ -76,7 +83,7 @@ export function AuthForm({ allowSignup = true, next: defaultNext }: { allowSignu
     }
   }
 
-  const handleGoogleLoginExplicit = () => {
+  const handleGoogleLoginExplicit = async () => {
     setError(null)
     const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID
     if (!clientId) {
@@ -84,9 +91,19 @@ export function AuthForm({ allowSignup = true, next: defaultNext }: { allowSignu
       return
     }
 
+    // Wait for Google script if not yet loaded (up to 3 seconds)
     if (!(window as any).google) {
-      setError('Google Auth script is still loading. Please try again in a moment.')
-      return
+      setIsGoogleLoading(true)
+      let waited = 0
+      while (!(window as any).google && waited < 3000) {
+        await new Promise(r => setTimeout(r, 200))
+        waited += 200
+      }
+      if (!(window as any).google) {
+        setError('Could not load Google Auth. Please check your internet connection or disable ad-blockers and try again.')
+        setIsGoogleLoading(false)
+        return
+      }
     }
 
     setIsGoogleLoading(true)
@@ -105,6 +122,8 @@ export function AuthForm({ allowSignup = true, next: defaultNext }: { allowSignu
           size: 'large',
           width: 320
         })
+        // Small delay for button rendering
+        await new Promise(r => setTimeout(r, 100))
         const googleButton = container.querySelector('div[role="button"]') as HTMLElement
         if (googleButton) {
           googleButton.click()
