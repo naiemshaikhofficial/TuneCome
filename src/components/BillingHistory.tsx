@@ -45,10 +45,10 @@ export function BillingHistory({ items, profile, email }: {
           <style>
             @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
             body { font-family: 'Inter', sans-serif; padding: 50px; color: #1e293b; line-height: 1.5; background: #fff; }
-            .top-bar { height: 6px; background: #00BFFF; margin-bottom: 40px; border-radius: 3px; }
+            .top-bar { height: 6px; background: #000000; margin-bottom: 40px; border-radius: 3px; }
             .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px; }
             .logo-text { font-size: 24px; font-weight: 800; text-transform: uppercase; color: #0f172a; letter-spacing: 1px; }
-            .logo-sub { font-size: 8px; font-weight: 700; color: #00BFFF; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 2px; }
+            .logo-sub { font-size: 8px; font-weight: 700; color: #000000; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 2px; }
             .official-title { text-align: right; }
             .title-text { font-size: 20px; font-weight: 800; text-transform: uppercase; color: #0f172a; margin: 0; }
             .subtitle-text { font-size: 10px; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: 1px; }
@@ -64,11 +64,11 @@ export function BillingHistory({ items, profile, email }: {
             
             .totals { margin-top: 30px; margin-left: auto; width: 260px; border: 1px solid #e2e8f0; border-radius: 6px; padding: 16px; background: #f8fafc; }
             .total-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 12px; font-weight: 500; color: #475569; }
-            .grand-total { font-size: 14px; font-weight: 800; color: #00BFFF; border-top: 1px solid #e2e8f0; padding-top: 8px; margin-top: 8px; }
+            .grand-total { font-size: 14px; font-weight: 800; color: #000000; border-top: 1px solid #e2e8f0; padding-top: 8px; margin-top: 8px; }
             
             .declarations { margin-top: 40px; font-size: 10px; color: #64748b; background: #f8fafc; padding: 15px; border-radius: 6px; border: 1px dashed #e2e8f0; }
             .footer { margin-top: 60px; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 20px; font-size: 11px; color: #64748b; }
-            .help-box { margin-top: 15px; display: inline-flex; align-items: center; gap: 6px; color: #00BFFF; font-weight: 700; font-size: 10px; text-transform: uppercase; text-decoration: none; }
+            .help-box { margin-top: 15px; display: inline-flex; align-items: center; gap: 6px; color: #000000; font-weight: 700; font-size: 10px; text-transform: uppercase; text-decoration: none; }
             
             @media print { .no-print { display: none; } }
           </style>
@@ -159,7 +159,7 @@ export function BillingHistory({ items, profile, email }: {
           </div>
  
           <div class="no-print" style="margin-top: 40px; text-align: center;">
-            <button onclick="window.print()" style="padding: 12px 24px; background: #00BFFF; color: #fff; border: none; border-radius: 6px; font-weight: 700; text-transform: uppercase; cursor: pointer; letter-spacing: 1px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">Print / Download PDF</button>
+            <button onclick="window.print()" style="padding: 12px 24px; background: #000000; color: #fff; border: none; border-radius: 6px; font-weight: 700; text-transform: uppercase; cursor: pointer; letter-spacing: 1px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">Print / Download PDF</button>
           </div>
         </body>
       </html>
@@ -184,11 +184,11 @@ export function BillingHistory({ items, profile, email }: {
           <style>
             @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
             body { font-family: 'Inter', sans-serif; padding: 50px; color: #1e293b; line-height: 1.5; background: #fff; }
-            .top-bar { height: 6px; background: #00BFFF; margin-bottom: 40px; border-radius: 3px; }
+            .top-bar { height: 6px; background: #000000; margin-bottom: 40px; border-radius: 3px; }
             .cert-container { border: 1px solid #e2e8f0; border-radius: 8px; padding: 40px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05); }
             .header { text-align: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 25px; margin-bottom: 30px; }
             .logo-text { font-size: 26px; font-weight: 800; text-transform: uppercase; color: #0f172a; letter-spacing: 1.5px; }
-            .cert-title { font-size: 22px; font-weight: 800; text-transform: uppercase; color: #00BFFF; margin: 15px 0 0 0; letter-spacing: 0.5px; }
+            .cert-title { font-size: 22px; font-weight: 800; text-transform: uppercase; color: #000000; margin: 15px 0 0 0; letter-spacing: 0.5px; }
             .cert-subtitle { font-size: 10px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 2px; margin-top: 5px; }
             
             .license-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 35px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 20px; }
@@ -201,10 +201,10 @@ export function BillingHistory({ items, profile, email }: {
             .terms-section p { margin-bottom: 15px; text-align: justify; }
             
             .footer-grid { margin-top: 40px; display: flex; justify-content: space-between; align-items: flex-end; }
-            .stamp-box { border: 1px solid #e2e8f0; border-radius: 6px; padding: 12px; background: #f8fafc; color: #00BFFF; font-size: 9px; font-weight: 800; text-align: center; text-transform: uppercase; letter-spacing: 0.5px; }
+            .stamp-box { border: 1px solid #e2e8f0; border-radius: 6px; padding: 12px; background: #f8fafc; color: #000000; font-size: 9px; font-weight: 800; text-align: center; text-transform: uppercase; letter-spacing: 0.5px; }
             .sig-area { text-align: right; }
             .sig-line { border-top: 1px solid #e2e8f0; width: 200px; margin-left: auto; padding-top: 8px; font-size: 10px; font-weight: 700; color: #64748b; text-transform: uppercase; }
-            .help-box { margin-top: 10px; font-size: 9px; font-weight: 700; color: #00BFFF; text-transform: uppercase; text-decoration: none; display: block; }
+            .help-box { margin-top: 10px; font-size: 9px; font-weight: 700; color: #000000; text-transform: uppercase; text-decoration: none; display: block; }
             
             @media print { .no-print { display: none; } }
           </style>
@@ -277,7 +277,7 @@ export function BillingHistory({ items, profile, email }: {
           </div>
  
           <div class="no-print" style="margin-top: 40px; text-align: center;">
-            <button onclick="window.print()" style="padding: 12px 24px; background: #00BFFF; color: #fff; border: none; border-radius: 6px; font-weight: 700; text-transform: uppercase; cursor: pointer; letter-spacing: 1px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">Print Certificate</button>
+            <button onclick="window.print()" style="padding: 12px 24px; background: #000000; color: #fff; border: none; border-radius: 6px; font-weight: 700; text-transform: uppercase; cursor: pointer; letter-spacing: 1px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">Print Certificate</button>
           </div>
         </body>
       </html>
@@ -330,7 +330,7 @@ export function BillingHistory({ items, profile, email }: {
                     </div>
                   </td>
                   <td className="p-5 text-right">
-                    <span className="text-[11px] font-extrabold text-[#00BFFF]">${item.amount}</span>
+                    <span className="text-[11px] font-extrabold text-[#000000]">${item.amount}</span>
                   </td>
                   <td className="p-5 text-right">
                      <div className="flex items-center justify-end gap-2">
@@ -343,7 +343,7 @@ export function BillingHistory({ items, profile, email }: {
                        </button>
                        <button 
                          onClick={() => handleDownloadLicense(item)}
-                         className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#00BFFF]/10 border border-[#00BFFF]/20 text-[9px] font-bold uppercase tracking-wider text-[#00BFFF] hover:bg-[#00BFFF] hover:text-white rounded-md transition-all"
+                         className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#000000]/10 border border-[#000000]/20 text-[9px] font-bold uppercase tracking-wider text-[#000000] hover:bg-[#000000] hover:text-white rounded-md transition-all"
                        >
                          <FileCheck size={12} />
                          License

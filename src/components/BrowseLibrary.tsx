@@ -63,7 +63,7 @@ export function BrowseLibrary({ initialPacks, searchQuery, isIndiaJourney }: { i
             <Link 
               href={`/packs/${pack.slug}`} 
               prefetch={false}
-              className="aspect-square relative overflow-hidden bg-slate-100 border border-slate-200 block transition-all group-hover:-translate-y-1 rounded-lg group-hover:border-[#00BFFF]/40 shadow-sm hover:shadow-md"
+              className="aspect-square relative overflow-hidden bg-slate-100 border border-slate-200 block transition-all group-hover:-translate-y-1 rounded-lg group-hover:border-[#000000]/40 shadow-sm hover:shadow-md"
             >
               <Image
                 src={getOptimizedImageUrl(pack.cover_url, 600, 80)}
@@ -79,7 +79,7 @@ export function BrowseLibrary({ initialPacks, searchQuery, isIndiaJourney }: { i
                 <div className={`absolute top-3 left-3 backdrop-blur-md px-2 py-0.5 border border-white/10 rounded-md z-10 ${
                   isExpired
                     ? 'bg-slate-800 text-white shadow-sm'
-                    : 'bg-[#00BFFF]/95 text-white shadow-sm font-semibold'
+                    : 'bg-[#000000]/95 text-white shadow-sm font-semibold'
                 }`}>
                   <span className="text-[8px] font-bold uppercase tracking-widest">
                     {isExpired ? 'Regular Price' : 'Pre-order Offer'}
@@ -91,7 +91,7 @@ export function BrowseLibrary({ initialPacks, searchQuery, isIndiaJourney }: { i
             <div className="flex flex-col flex-grow justify-between px-1 mt-2">
               <div className="space-y-1">
                 <Link href={`/packs/${pack.slug}`} prefetch={false}>
-                  <h3 className="text-[13px] font-bold uppercase truncate transition-colors tracking-tight text-slate-800 hover:text-[#00BFFF]">
+                  <h3 className="text-[13px] font-bold uppercase truncate transition-colors tracking-tight text-slate-800 hover:text-[#000000]">
                     {pack.name}
                   </h3>
                 </Link>
@@ -104,7 +104,7 @@ export function BrowseLibrary({ initialPacks, searchQuery, isIndiaJourney }: { i
                       <span className="text-[9px] text-slate-400 line-through font-bold">
                         ${pack.mrp_inr || (currentPrice * 3)}
                       </span>
-                      <p className="text-[14px] font-extrabold italic leading-none text-[#00BFFF]">
+                      <p className="text-[14px] font-extrabold italic leading-none text-[#000000]">
                         ${currentPrice}
                       </p>
                     </div>
@@ -119,7 +119,7 @@ export function BrowseLibrary({ initialPacks, searchQuery, isIndiaJourney }: { i
                         <span className={`text-[7px] font-semibold uppercase tracking-tighter px-1 rounded-sm text-center border ${
                           isExpired
                             ? 'bg-slate-100 text-slate-400 border-slate-200'
-                            : 'bg-[#00BFFF]/10 text-[#00BFFF] border-[#00BFFF]/20'
+                            : 'bg-[#000000]/10 text-[#000000] border-[#000000]/20'
                         }`}>
                           {isExpired ? 'Direct Purchase' : 'Pre-order Active'}
                         </span>
@@ -164,7 +164,7 @@ export function BrowseLibrary({ initialPacks, searchQuery, isIndiaJourney }: { i
                 </button>
                 <button 
                   onClick={() => handleBuyNow(pack, currentPrice)}
-                  className="flex-1 h-9 bg-[#00BFFF] hover:bg-[#009fcc] text-white text-[10px] md:text-xs font-semibold uppercase tracking-wider transition-all rounded-md flex items-center justify-center shadow-sm"
+                  className="flex-1 h-9 bg-[#000000] hover:bg-[#1a1a1a] text-white text-[10px] md:text-xs font-semibold uppercase tracking-wider transition-all rounded-md flex items-center justify-center shadow-sm"
                 >
                   {isPreorderActive ? 'Pre-Order' : 'Buy Now'}
                 </button>
@@ -202,7 +202,7 @@ function PackCountdown({ pack }: { pack: any }) {
   return (
     <div className="mt-2 p-1.5 rounded-md border flex items-center justify-between gap-1 text-slate-700 border-slate-200/80 bg-slate-50 shadow-sm">
       <div className="flex items-center gap-1">
-        <div className="w-1.5 h-1.5 rounded-full bg-[#00BFFF] animate-pulse" />
+        <div className="w-1.5 h-1.5 rounded-full bg-[#000000] animate-pulse" />
         <span className="text-[8px] font-bold uppercase tracking-wider text-slate-500">Ends In:</span>
       </div>
       <div className="flex gap-0.5 font-mono text-[9px] font-bold">
@@ -222,7 +222,7 @@ function PackCountdown({ pack }: { pack: any }) {
         </div>
         <span className="text-slate-300 self-center">:</span>
         <div className="bg-white px-1.5 py-0.5 rounded border border-slate-100 flex flex-col items-center min-w-[18px] shadow-sm">
-          <span className="text-[#00BFFF] animate-pulse">
+          <span className="text-[#000000] animate-pulse">
             {mounted ? String(seconds).padStart(2, '0') : '00'}
           </span>
           <span className="text-[4px] text-slate-400 uppercase font-sans">s</span>

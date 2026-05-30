@@ -194,12 +194,12 @@ export function HeroSlider({ packs }: { packs: any[] }) {
                         <span className="text-[11px] text-white/40 line-through font-bold">
                           ${activePack.mrp_inr || (currentPrice * 3)}
                         </span>
-                        <span className="text-3xl md:text-4xl font-extrabold text-[#00BFFF] italic leading-none">
+                        <span className="text-3xl md:text-4xl font-extrabold text-[#000000] italic leading-none">
                           ${currentPrice}
                         </span>
                       </div>
                       
-                      <div className="bg-[#00BFFF]/10 text-[#00BFFF] border border-[#00BFFF]/20 px-2.5 py-1 rounded-full">
+                      <div className="bg-[#000000]/10 text-[#000000] border border-[#000000]/20 px-2.5 py-1 rounded-full">
                         <span className="text-[10px] md:text-xs font-bold uppercase">
                           {Math.round((1 - (currentPrice / (activePack.mrp_inr || (currentPrice * 3)))) * 100)}% OFF
                         </span>
@@ -337,7 +337,7 @@ export function HeroSlider({ packs }: { packs: any[] }) {
                       />
                     </div>
                   ) : (
-                    <span className="text-[9px] font-bold text-[#00BFFF] italic mt-1 block">
+                    <span className="text-[9px] font-bold text-[#000000] italic mt-1 block">
                       ${pack.price_inr}
                     </span>
                   )}

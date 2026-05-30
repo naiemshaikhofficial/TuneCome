@@ -48,14 +48,14 @@ export function CartSidebar({ initialUser }: { initialUser?: any }) {
         {/* Header */}
         <div className="p-6 border-b border-slate-100 flex items-center justify-between relative z-10 bg-slate-50">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-studio-yellow text-white rounded-md">
+            <div className="p-2 bg-black text-white rounded-md">
               <ShoppingBag size={18} />
             </div>
             <div className="flex items-center gap-2">
               <h2 className="text-xl font-bold uppercase tracking-widest text-slate-800">
-                Your <span className="text-[#00BFFF]">Cart</span>
+                Your <span className="text-slate-900">Cart</span>
               </h2>
-              <div className="bg-[#00BFFF] text-white px-2 py-0.5 rounded-full text-[9px] font-bold">
+              <div className="bg-black text-white px-2 py-0.5 rounded-full text-[9px] font-bold">
                 {itemCount}
               </div>
             </div>
@@ -83,7 +83,7 @@ export function CartSidebar({ initialUser }: { initialUser?: any }) {
               {items.length < 3 ? (
                 <div className="bg-slate-50 p-4 border border-slate-100 rounded-md relative overflow-hidden">
                   <p className="text-[9px] font-bold uppercase tracking-widest text-slate-500 mb-2">
-                    ⚡ Get <span className="text-[#00BFFF] font-black">10% OFF</span> by adding <span className="text-slate-800 font-black">{3 - items.length} more</span> items!
+                    ⚡ Get <span className="text-black font-black">10% OFF</span> by adding <span className="text-slate-800 font-black">{3 - items.length} more</span> items!
                   </p>
 
                   <div className="relative h-2.5 bg-slate-200 overflow-hidden rounded-full">
@@ -91,17 +91,17 @@ export function CartSidebar({ initialUser }: { initialUser?: any }) {
                       className="absolute top-0 left-0 h-full transition-all duration-1000 ease-out rounded-full"
                       style={{ 
                         width: `${(items.length / 3) * 100}%`,
-                        backgroundColor: '#00BFFF'
+                        backgroundColor: '#000000'
                       }}
                     />
                   </div>
                 </div>
               ) : (
                 <div className="relative">
-                  <div className="bg-[#00BFFF]/10 p-3.5 border border-[#00BFFF]/20 rounded-md">
+                  <div className="bg-black/5 p-3.5 border border-black/10 rounded-md">
                     <div className="flex items-center gap-2">
-                      <Zap size={14} className="text-[#00BFFF] animate-pulse" />
-                      <p className="text-[9px] font-bold uppercase tracking-wider text-[#0074e4]">
+                      <Zap size={14} className="text-black animate-pulse" />
+                      <p className="text-[9px] font-bold uppercase tracking-wider text-slate-800">
                         Bundle Unlocked: <span className="font-black">10% Discount</span> Applied!
                       </p>
                     </div>
@@ -149,7 +149,7 @@ export function CartSidebar({ initialUser }: { initialUser?: any }) {
                 <span>${subtotal.toFixed(2)}</span>
               </div>
               {discount > 0 && (
-                <div className="flex justify-between items-center text-[9px] font-bold uppercase tracking-widest text-[#00BFFF]">
+                <div className="flex justify-between items-center text-[9px] font-bold uppercase tracking-widest text-black">
                   <span>Bundle Discount (10%)</span>
                   <span>-${discount.toFixed(2)}</span>
                 </div>

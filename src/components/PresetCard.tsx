@@ -72,7 +72,7 @@ export function PresetCard({ preset, priority = false }: PresetCardProps) {
       <Link
         href={`/browse/presets/${preset.slug}`}
         prefetch={false}
-        className="comic-panel aspect-square block border border-slate-200 bg-[#f8fafc] rounded-lg overflow-hidden relative transition-all group-hover:border-studio-yellow hover:shadow-md"
+        className="comic-panel aspect-square block border border-slate-200 bg-[#f8fafc] rounded-lg overflow-hidden relative transition-all group-hover:border-slate-900 hover:shadow-md"
       >
         <Image
           src={getOptimizedImageUrl(preset.cover_url || '/placeholder.jpg', 600, 80)}
@@ -86,14 +86,14 @@ export function PresetCard({ preset, priority = false }: PresetCardProps) {
 
         {/* Type Badge */}
         <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-xs px-2.5 py-0.5 rounded-full border border-slate-200">
-          <span className="text-[8px] font-bold uppercase tracking-widest text-[#0052ff]">{preset.type || 'Preset'}</span>
+          <span className="text-[8px] font-bold uppercase tracking-widest text-black">{preset.type || 'Preset'}</span>
         </div>
       </Link>
 
       <div className="space-y-3 px-1 text-slate-800">
         <div className="space-y-1">
           <Link href={`/browse/presets/${preset.slug}`} prefetch={false}>
-            <h3 className="text-xs font-bold uppercase truncate hover:text-studio-yellow transition-colors tracking-tight text-slate-900">
+            <h3 className="text-xs font-bold uppercase truncate hover:text-black transition-colors tracking-tight text-slate-900">
               {preset.name}
             </h3>
           </Link>
@@ -131,7 +131,7 @@ export function PresetCard({ preset, priority = false }: PresetCardProps) {
                 exit={{ scale: 0.8, opacity: 0 }}
                 className="absolute -top-10 left-0 right-0 z-50 flex justify-center pointer-events-none"
               >
-                <div className="bg-[#0052ff] text-white px-3 py-1.5 rounded-md font-bold text-[9px] uppercase tracking-wider shadow-sm relative">
+                <div className="bg-black text-white px-3 py-1.5 rounded-md font-bold text-[9px] uppercase tracking-wider shadow-sm relative">
                   Added!
                 </div>
               </motion.div>
@@ -147,7 +147,7 @@ export function PresetCard({ preset, priority = false }: PresetCardProps) {
           </button>
           <button
             onClick={handleBuyNow}
-            className="flex-1 h-9 bg-studio-yellow text-white text-[10px] font-bold uppercase tracking-wider hover:bg-[#003db3] transition-all rounded-md cursor-pointer"
+            className="flex-1 h-9 bg-black text-white text-[10px] font-bold uppercase tracking-wider hover:bg-slate-800 transition-all rounded-md cursor-pointer"
           >
             Get
           </button>

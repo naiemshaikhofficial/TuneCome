@@ -39,8 +39,8 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="comic-panel p-8 md:p-12 border-4 border-black shadow-[10px_10px_0px_#00BFFF] relative overflow-hidden bg-zinc-950">
-      <div className="absolute top-0 right-0 p-8 opacity-5 text-[#00BFFF]">
+    <div className="comic-panel p-8 md:p-12 border-4 border-black shadow-[10px_10px_0px_#000000] relative overflow-hidden bg-zinc-950">
+      <div className="absolute top-0 right-0 p-8 opacity-5 text-[#000000]">
         <Send size={120} />
       </div>
 

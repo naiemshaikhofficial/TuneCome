@@ -1,19 +1,19 @@
 @import "tailwindcss";
 
 /* 
-  Splice-Inspired Sleek & Decent Light Theme Configuration
+  Minimalist Premium Black & White Theme
 */
 @theme {
-  --color-studio-yellow: #0052ff;          /* Vibrant Electric Blue (Accents & Highlights) */
-  --color-studio-yellow-hover: #003db3;
-  --color-studio-pink: #0052ff;            /* Vibrant Electric Blue */
-  --color-studio-blue: #0052ff;            /* Vibrant Electric Blue */
-  --color-studio-orange: #0052ff;
-  --color-studio-purple: #0052ff;
-  --color-studio-neon: #0052ff;
-  --color-studio-red: #ef4444;             /* Error Red */
-  --color-studio-grey: #f8fafc;            /* Light slate grey background */
-  --color-studio-charcoal: #ffffff;        /* White Background */
+  --color-studio-yellow: #000000;
+  --color-studio-yellow-hover: #1a1a1a;
+  --color-studio-pink: #000000;
+  --color-studio-blue: #000000;
+  --color-studio-orange: #000000;
+  --color-studio-purple: #000000;
+  --color-studio-neon: #000000;
+  --color-studio-red: #ef4444;             /* Error Red (kept for UX clarity) */
+  --color-studio-grey: #f8fafc;
+  --color-studio-charcoal: #ffffff;
 
   /* Social Brand Colors */
   --color-social-youtube: #FF0000;
@@ -22,10 +22,10 @@
   --color-social-telegram: #0088cc;
   --color-social-linkedin: #0A66C2;
 
-  /* Glass tokens for Light Theme */
+  /* Glass tokens */
   --color-glass-white: rgba(255, 255, 255, 0.85);
   --color-glass-border: rgba(0, 0, 0, 0.06);
-  --color-glass-glow: rgba(0, 82, 255, 0.02);
+  --color-glass-glow: rgba(0, 0, 0, 0.01);
 
   --font-mono: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-noto-music: "Noto Music", sans-serif;
@@ -35,15 +35,14 @@
   --radius-lg: 14px;
 
   --shadow-premium: 0px 4px 20px rgba(0, 0, 0, 0.03);
-  --shadow-neon-pink: 0 0 10px rgba(0, 82, 255, 0.05);
-  --shadow-neon-blue: 0 0 10px rgba(0, 82, 255, 0.05);
+  --shadow-neon-pink: 0 0 10px rgba(0, 0, 0, 0.03);
+  --shadow-neon-blue: 0 0 10px rgba(0, 0, 0, 0.03);
 }
 
 @utility graffiti-text {
   text-shadow: none;
 }
 
-/* No invert filter needed for white/light theme logo */
 .logo-dark-invert {
   filter: none !important;
 }
@@ -66,7 +65,7 @@ body {
 @layer base {
   body {
     background-color: #ffffff !important;
-    color: #0f172a !important;  /* High contrast dark charcoal */
+    color: #0f172a !important;
     user-select: text;
     font-family: var(--font-mono);
     animation: fadeIn 0.4s ease-in-out;
@@ -92,7 +91,7 @@ body {
     }
   }
 
-  /* Minimalist Light Scrollbar */
+  /* Minimalist Scrollbar */
   ::-webkit-scrollbar {
     width: 6px;
   }
@@ -110,7 +109,7 @@ body {
     background: #94a3b8;
   }
 
-  /* Autofill styling fix for light theme */
+  /* Autofill styling */
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
@@ -130,10 +129,10 @@ body {
     border-radius: 10px;
   }
 
-  /* Decent Premium Accent Button */
+  /* Premium Black Accent Button */
   .studio-button {
     padding: 0.75rem 2rem;
-    background-color: #0052ff;
+    background-color: #000000;
     color: #ffffff;
     font-weight: 700;
     text-transform: uppercase;
@@ -150,9 +149,9 @@ body {
   }
 
   .studio-button:hover {
-    background-color: #003db3;
+    background-color: #1a1a1a;
     transform: translateY(-1.5px);
-    box-shadow: 0px 4px 15px rgba(0, 82, 255, 0.15);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
   }
 
   .studio-button:active {
@@ -175,7 +174,7 @@ body {
 
   .street-sticker {
     font-family: var(--font-mono);
-    background-color: #0052ff;
+    background-color: #000000;
     color: #ffffff;
     padding: 4px 12px;
     border-radius: 6px;
@@ -194,9 +193,9 @@ body {
   }
 
   .graffiti-input-box:focus-within {
-    border-color: #0052ff !important;
+    border-color: #000000 !important;
     background-color: #ffffff !important;
-    box-shadow: 0 0 12px rgba(0, 82, 255, 0.08) !important;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.04) !important;
   }
 
   .neon-border, .pink-border, .blue-border, .yellow-border {
@@ -205,7 +204,7 @@ body {
     border-radius: 10px !important;
   }
 
-  /* Universal Overwrites for Bubbly & Comic Legacy Classes */
+  /* Universal Overwrites for Legacy Classes */
   .comic-panel, [class*="comic-panel"] {
     border: 1px solid rgba(0, 0, 0, 0.06) !important;
     background: #f8fafc !important;
@@ -217,16 +216,16 @@ body {
   }
 
   .comic-panel:hover, [class*="comic-panel"]:hover {
-    border-color: rgba(0, 82, 255, 0.25) !important;
-    box-shadow: 0px 8px 25px rgba(0, 82, 255, 0.06) !important;
+    border-color: rgba(0, 0, 0, 0.15) !important;
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.06) !important;
     transform: translateY(-2px) !important;
   }
 
-  /* Solid Sleek Button */
+  /* Solid Black Button */
   .comic-button, [class*="comic-button"] {
     position: relative;
     padding: 0.75rem 1.75rem;
-    background-color: #0052ff !important;
+    background-color: #000000 !important;
     color: #ffffff !important;
     font-weight: 700;
     text-transform: uppercase;
@@ -239,9 +238,9 @@ body {
   }
 
   .comic-button:hover, [class*="comic-button"]:hover {
-    background-color: #003db3 !important;
+    background-color: #1a1a1a !important;
     transform: translateY(-1.5px) !important;
-    box-shadow: 0px 4px 15px rgba(0, 82, 255, 0.15) !important;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1) !important;
   }
 
   .splatter-effect {
@@ -278,7 +277,7 @@ body {
     rotate: none !important;
   }
 
-  /* Phone Input Overrides for Light Theme */
+  /* Phone Input Overrides */
   .PhoneInput {
     display: flex;
     align-items: center;
@@ -332,7 +331,7 @@ body {
     scrollbar-width: none;
   }
 
-  /* Blog Content Styles for Light Theme */
+  /* Blog Content Styles */
   .blog-content h2 {
     font-size: 1.5rem;
     font-weight: 850;
@@ -341,7 +340,7 @@ body {
     margin-bottom: 1.5rem;
     text-transform: uppercase;
     letter-spacing: -0.015em;
-    border-left: 4px solid var(--color-studio-yellow);
+    border-left: 4px solid #000000;
     padding-left: 1.5rem;
   }
 
@@ -355,7 +354,7 @@ body {
     margin: 3rem 0;
     padding: 2rem;
     background: #f8fafc;
-    border-left: 8px solid var(--color-studio-yellow);
+    border-left: 8px solid #000000;
     font-style: italic;
     color: #0f172a;
     font-size: 1.25rem;

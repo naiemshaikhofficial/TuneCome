@@ -45,7 +45,7 @@ export function PaymentButton({ packId, packName, price, slug, cover_url, userId
     <button 
       disabled={loading}
       onClick={handleBuyNow}
-      className="w-full h-14 bg-[#00BFFF] text-white font-bold uppercase tracking-wider text-xs flex items-center justify-center gap-3 hover:bg-[#009fcc] transition-all disabled:opacity-50 rounded-lg shadow-sm"
+      className="w-full h-14 bg-[#000000] text-white font-bold uppercase tracking-wider text-xs flex items-center justify-center gap-3 hover:bg-[#1a1a1a] transition-all disabled:opacity-50 rounded-lg shadow-sm"
     >
       {loading ? (
         <Loader2 className="animate-spin" size={20} />

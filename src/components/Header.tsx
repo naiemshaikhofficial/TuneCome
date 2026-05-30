@@ -151,7 +151,7 @@ function HeaderSearch({ onSearchClose }: { onSearchClose?: () => void }) {
                     />
                   </div>
                   <div className="flex-grow min-w-0">
-                    <h4 className="text-[10px] font-bold uppercase text-slate-800 truncate group-hover:text-studio-yellow transition-colors">
+                    <h4 className="text-[10px] font-bold uppercase text-slate-800 truncate group-hover:text-black transition-colors">
                       {pack.name}
                     </h4>
                     <div className="flex items-center gap-2">
@@ -163,12 +163,12 @@ function HeaderSearch({ onSearchClose }: { onSearchClose?: () => void }) {
                       </p>
                     </div>
                   </div>
-                  <ArrowRight size={10} className="text-slate-300 group-hover:text-studio-yellow -translate-x-1 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all" />
+                  <ArrowRight size={10} className="text-slate-300 group-hover:text-black -translate-x-1 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all" />
                 </Link>
               ))}
               <button
                 onClick={handleSearch}
-                className="w-full p-2.5 bg-slate-50 text-[8px] font-bold uppercase tracking-widest text-slate-550 hover:text-studio-yellow text-left border-t border-slate-100"
+                className="w-full p-2.5 bg-slate-50 text-[8px] font-bold uppercase tracking-widest text-slate-550 hover:text-black text-left border-t border-slate-100"
               >
                 View all results for "{query}"
               </button>
@@ -300,7 +300,7 @@ export function Header() {
             <div 
               className="absolute inset-0 opacity-[0.015] pointer-events-none" 
               style={{
-                backgroundImage: `radial-gradient(#0052ff 1px, transparent 1px)`,
+                backgroundImage: `radial-gradient(#000000 1px, transparent 1px)`,
                 backgroundSize: '16px 16px'
               }}
             />
@@ -324,7 +324,7 @@ export function Header() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsMenuOpen(false)}
-                  className={`group flex items-center justify-between p-3 border border-slate-100 rounded-md hover:border-studio-yellow transition-all ${link.name === 'ARTIST DASHBOARD'
+                  className={`group flex items-center justify-between p-3 border border-slate-100 rounded-md hover:border-slate-900 transition-all ${link.name === 'ARTIST DASHBOARD'
                     ? 'bg-slate-900 text-white font-bold'
                     : 'bg-slate-50 text-slate-800 hover:bg-slate-100'
                     }`}

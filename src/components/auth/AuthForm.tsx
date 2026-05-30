@@ -234,7 +234,7 @@ export function AuthForm({ allowSignup = true, next: defaultNext }: { allowSignu
               className="w-full h-11 bg-white text-slate-900 border border-slate-200 font-bold rounded-md text-xs flex items-center justify-center gap-3 hover:bg-slate-50 transition-all disabled:opacity-50"
             >
               {isGoogleLoading ? (
-                <Loader2 className="animate-spin text-studio-yellow" size={16} />
+                <Loader2 className="animate-spin text-black" size={16} />
               ) : (
                 <svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
@@ -279,7 +279,7 @@ export function AuthForm({ allowSignup = true, next: defaultNext }: { allowSignu
                   name="fullName"
                   type="text" 
                   required
-                  className="w-full h-11 bg-slate-50 border border-slate-200 rounded-md pl-11 pr-4 text-xs focus:border-studio-yellow focus:bg-white outline-none transition-all text-slate-900 font-bold uppercase tracking-wide"
+                  className="w-full h-11 bg-slate-50 border border-slate-200 rounded-md pl-11 pr-4 text-xs focus:border-black focus:bg-white outline-none transition-all text-slate-900 font-bold uppercase tracking-wide"
                   placeholder="NAME"
                 />
               </div>
@@ -294,7 +294,7 @@ export function AuthForm({ allowSignup = true, next: defaultNext }: { allowSignu
                 name="email"
                 type="email" 
                 required
-                className="w-full h-11 bg-slate-50 border border-slate-200 rounded-md pl-11 pr-4 text-xs focus:border-studio-yellow focus:bg-white outline-none transition-all text-slate-900 font-bold lowercase"
+                className="w-full h-11 bg-slate-50 border border-slate-200 rounded-md pl-11 pr-4 text-xs focus:border-black focus:bg-white outline-none transition-all text-slate-900 font-bold lowercase"
                 placeholder="email@example.com"
               />
             </div>
@@ -308,7 +308,7 @@ export function AuthForm({ allowSignup = true, next: defaultNext }: { allowSignu
                   <button 
                     type="button"
                     onClick={() => setMode('forgot')}
-                    className="text-[9px] font-black uppercase tracking-widest text-studio-yellow hover:underline"
+                    className="text-[9px] font-black uppercase tracking-widest text-black hover:underline"
                   >
                     Forgot?
                   </button>
@@ -326,7 +326,7 @@ export function AuthForm({ allowSignup = true, next: defaultNext }: { allowSignu
                     setPassword(e.target.value)
                     checkStrength(e.target.value)
                   }}
-                  className="w-full h-11 bg-slate-50 border border-slate-200 rounded-md pl-11 pr-11 text-xs focus:border-studio-yellow focus:bg-white outline-none transition-all text-slate-900 font-bold"
+                  className="w-full h-11 bg-slate-50 border border-slate-200 rounded-md pl-11 pr-11 text-xs focus:border-black focus:bg-white outline-none transition-all text-slate-900 font-bold"
                   placeholder="PASSWORD"
                 />
                 <button 
@@ -346,7 +346,7 @@ export function AuthForm({ allowSignup = true, next: defaultNext }: { allowSignu
                         key={level}
                         className={`h-1 flex-1 rounded-full transition-all duration-500 ${
                           strength >= level 
-                            ? strength <= 2 ? 'bg-red-400' : strength === 3 ? 'bg-yellow-400' : 'bg-studio-yellow'
+                            ? strength <= 2 ? 'bg-red-400' : strength === 3 ? 'bg-yellow-400' : 'bg-black'
                             : 'bg-slate-100'
                         }`}
                       />
@@ -366,7 +366,7 @@ export function AuthForm({ allowSignup = true, next: defaultNext }: { allowSignu
                   name="confirmPassword"
                   type={showPassword ? 'text' : 'password'} 
                   required
-                  className="w-full h-11 bg-slate-50 border border-slate-200 rounded-md pl-11 pr-11 text-xs focus:border-studio-yellow focus:bg-white outline-none transition-all text-slate-900 font-bold"
+                  className="w-full h-11 bg-slate-50 border border-slate-200 rounded-md pl-11 pr-11 text-xs focus:border-black focus:bg-white outline-none transition-all text-slate-900 font-bold"
                   placeholder="REPEAT PASSWORD"
                 />
               </div>

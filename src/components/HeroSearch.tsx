@@ -96,7 +96,7 @@ export function HeroSearch() {
         transition={{ type: "spring", stiffness: 450, damping: 18 }}
         className="relative graffiti-input-box overflow-hidden"
       >
-        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-white/20">
+        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
           <Search size={16} />
         </div>
         <input
@@ -105,21 +105,21 @@ export function HeroSearch() {
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => query.length >= 2 && setIsOpen(true)}
           placeholder={placeholderText}
-          className="w-full h-14 bg-transparent pl-12 pr-12 text-[10px] font-black uppercase tracking-widest focus:outline-none focus:bg-white/5 transition-all placeholder:text-white/20 text-white"
+          className="w-full h-14 bg-transparent pl-12 pr-12 text-[10px] font-black uppercase tracking-widest focus:outline-none focus:bg-white/5 transition-all placeholder:text-slate-400 text-slate-900"
         />
         <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2">
           {query && (
             <button
               type="button"
               onClick={() => { setQuery(''); setSuggestions([]); }}
-              className="text-white/20 hover:text-white"
+              className="text-slate-400 hover:text-slate-900"
             >
               <X size={16} />
             </button>
           )}
           <button
             type="submit"
-            className="text-white/40 hover:text-studio-yellow transition-colors"
+            className="text-slate-400 hover:text-black transition-colors"
           >
             <ArrowRight size={18} />
           </button>
@@ -150,24 +150,24 @@ export function HeroSearch() {
                     />
                   </div>
                   <div className="flex-grow min-w-0">
-                    <h4 className="text-[10px] font-bold uppercase truncate text-slate-800 group-hover:text-[#00BFFF] transition-colors">
+                    <h4 className="text-[10px] font-bold uppercase truncate text-slate-800 group-hover:text-black transition-colors">
                       {pack.name}
                     </h4>
                     <div className="flex items-center gap-2">
                       <span className="text-[9px] text-slate-400 line-through font-bold">
                         ${pack.mrp_inr || (Number(pack.price_inr) * 3)}
                       </span>
-                      <p className="text-[10px] font-extrabold text-[#00BFFF] uppercase italic tracking-widest">
+                      <p className="text-[10px] font-extrabold text-black uppercase italic tracking-widest">
                         ${pack.price_inr}
                       </p>
                     </div>
                   </div>
-                  <ArrowRight size={12} className="text-slate-300 group-hover:text-[#00BFFF] -translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all" />
+                  <ArrowRight size={12} className="text-slate-300 group-hover:text-black -translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all" />
                 </Link>
               ))}
               <button
                 onClick={handleSearch}
-                className="w-full p-3 bg-slate-50 text-[8px] font-bold uppercase tracking-[0.2em] text-slate-500 hover:text-[#00BFFF] hover:bg-slate-100/50 text-left border-t border-slate-100"
+                className="w-full p-3 bg-slate-50 text-[8px] font-bold uppercase tracking-[0.2em] text-slate-500 hover:text-black hover:bg-slate-100/50 text-left border-t border-slate-100"
               >
                 View all results for "{query}"
               </button>

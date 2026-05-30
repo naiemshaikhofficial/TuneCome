@@ -81,7 +81,7 @@ export function HomePacks({ packs }: { packs: any[] }) {
             <Link
               href={`/packs/${pack.slug}`}
               prefetch={false}
-              className="comic-panel aspect-square block border border-slate-200 bg-[#f8fafc] rounded-lg overflow-hidden relative transition-all group-hover:border-studio-yellow hover:shadow-md"
+              className="comic-panel aspect-square block border border-slate-200 bg-[#f8fafc] rounded-lg overflow-hidden relative transition-all group-hover:border-slate-900 hover:shadow-md"
             >
               <Image
                 src={getOptimizedImageUrl(pack.cover_url, 600, 80)}
@@ -94,7 +94,7 @@ export function HomePacks({ packs }: { packs: any[] }) {
 
               {!pack.is_downloadable && (
                 <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-xs px-2.5 py-0.5 rounded-full border border-slate-200 text-slate-800 z-10">
-                  <span className="text-[8px] font-bold uppercase tracking-widest text-[#0052ff]">
+                  <span className="text-[8px] font-bold uppercase tracking-widest text-black">
                     {isExpired ? 'Regular' : 'Pre-order Offer'}
                   </span>
                 </div>
@@ -137,7 +137,7 @@ export function HomePacks({ packs }: { packs: any[] }) {
                   <PackCountdown pack={pack} />
                 ) : (
                   <div className="flex items-center gap-1.5 mt-2 px-2 py-0.5 bg-slate-50 border border-slate-200 text-slate-700 text-[8px] font-bold uppercase tracking-wider rounded-md w-fit">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#0052ff] animate-pulse" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" />
                     <span className="text-[8px] font-bold tracking-widest text-slate-600">
                       {isExpired ? 'In Stock' : 'Premium Release'}
                     </span>
@@ -154,7 +154,7 @@ export function HomePacks({ packs }: { packs: any[] }) {
                       exit={{ scale: 0.8, opacity: 0 }}
                       className="absolute -top-10 left-0 right-0 z-50 flex justify-center pointer-events-none"
                     >
-                      <div className="bg-[#0052ff] text-white px-3 py-1.5 rounded-md font-bold text-[9px] uppercase tracking-wider shadow-sm relative">
+                      <div className="bg-black text-white px-3 py-1.5 rounded-md font-bold text-[9px] uppercase tracking-wider shadow-sm relative">
                         {isPreorderActive ? 'Reserved!' : 'Added!'}
                       </div>
                     </motion.div>
@@ -171,7 +171,7 @@ export function HomePacks({ packs }: { packs: any[] }) {
                 </button>
                 <button
                   onClick={() => handleBuyNow(pack, currentPrice)}
-                  className="flex-1 h-9 bg-studio-yellow text-white text-[10px] font-bold uppercase tracking-wider hover:bg-[#003db3] transition-all rounded-md cursor-pointer"
+                  className="flex-1 h-9 bg-black text-white text-[10px] font-bold uppercase tracking-wider hover:bg-slate-800 transition-all rounded-md cursor-pointer"
                 >
                   {isPreorderActive ? 'Pre' : 'Get'}
                 </button>
@@ -207,9 +207,9 @@ function PackCountdown({ pack }: { pack: any }) {
   const seconds = priceDetails.secondsLeft
 
   return (
-    <div className="mt-2 p-1.5 rounded-md border border-[#0052ff] bg-slate-50 flex items-center justify-between gap-1 text-slate-800">
+    <div className="mt-2 p-1.5 rounded-md border border-black bg-slate-50 flex items-center justify-between gap-1 text-slate-800">
       <div className="flex items-center gap-1">
-        <Clock size={11} className="text-[#0052ff] animate-pulse" />
+        <Clock size={11} className="text-black animate-pulse" />
         <span className="text-[8px] font-bold uppercase tracking-wider text-slate-450">Ends:</span>
       </div>
       <div className="flex gap-0.5 font-mono text-[9px] font-bold">
@@ -226,7 +226,7 @@ function PackCountdown({ pack }: { pack: any }) {
         </div>
         <span className="text-slate-400 self-center">:</span>
         <div className="bg-white px-1 py-0.5 rounded-sm border border-slate-200 flex flex-col items-center min-w-[18px]">
-          <span className="text-[#0052ff]">
+          <span className="text-black">
             {mounted ? String(seconds).padStart(2, '0') : '00'}
           </span>
         </div>

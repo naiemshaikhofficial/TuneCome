@@ -81,9 +81,9 @@ export default async function PresetDetailPage({ params }: { params: Promise<{ s
         <section className="py-24 bg-slate-50 border-t border-slate-200/50 relative overflow-hidden">
           <div className="container mx-auto px-4 relative z-10">
             <div className="flex flex-col mb-12">
-              <div className="h-1 bg-[#00BFFF] w-12 mb-4 rounded-full" />
+              <div className="h-1 bg-[#000000] w-12 mb-4 rounded-full" />
               <h2 className="text-3xl font-extrabold uppercase italic tracking-tighter text-slate-900">
-                Similar <span className="text-[#00BFFF]">Presets</span>
+                Similar <span className="text-[#000000]">Presets</span>
               </h2>
               <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.4em] mt-2">
                 More {preset.type} tools for your library
@@ -97,7 +97,7 @@ export default async function PresetDetailPage({ params }: { params: Promise<{ s
                   href={`/browse/presets/${item.slug}`}
                   className="group block space-y-4"
                 >
-                  <div className="aspect-square relative overflow-hidden rounded-lg border border-slate-200/60 group-hover:border-[#00BFFF]/30 transition-all bg-slate-100 shadow-sm">
+                  <div className="aspect-square relative overflow-hidden rounded-lg border border-slate-200/60 group-hover:border-[#000000]/30 transition-all bg-slate-100 shadow-sm">
                     <Image 
                       src={item.cover_url || '/placeholder.jpg'} 
                       alt={item.name}
@@ -106,25 +106,25 @@ export default async function PresetDetailPage({ params }: { params: Promise<{ s
                       className="object-cover group-hover:scale-105 transition-transform duration-500 opacity-100"
                     />
                     <div className="absolute inset-0 bg-slate-950/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                       <span className="px-4 py-2 bg-[#00BFFF] text-white text-[8px] font-bold uppercase tracking-widest translate-y-4 group-hover:translate-y-0 transition-all rounded-md shadow-sm">
+                       <span className="px-4 py-2 bg-[#000000] text-white text-[8px] font-bold uppercase tracking-widest translate-y-4 group-hover:translate-y-0 transition-all rounded-md shadow-sm">
                          View Preset
                        </span>
                     </div>
                   </div>
                   <div className="flex flex-col gap-1">
-                    <h3 className="font-extrabold uppercase tracking-tight text-xs text-slate-800 group-hover:text-[#00BFFF] transition-colors">{item.name}</h3>
+                    <h3 className="font-extrabold uppercase tracking-tight text-xs text-slate-800 group-hover:text-[#000000] transition-colors">{item.name}</h3>
                     <div className="flex items-center gap-2">
                       {item.mrp_inr && (
                         <span className="text-[9px] text-slate-400 line-through font-bold">
                           ${item.mrp_inr}
                         </span>
                       )}
-                      <p className="text-[10px] font-extrabold text-[#00BFFF] uppercase italic tracking-tighter">
+                      <p className="text-[10px] font-extrabold text-[#000000] uppercase italic tracking-tighter">
                         {item.price_inr === 0 ? 'FREE' : `$${item.price_inr}`}
                       </p>
                       {item.mrp_inr && item.price_inr > 0 && (
-                        <div className="bg-[#00BFFF]/10 border border-[#00BFFF]/20 px-1.5 py-0.5 rounded-md">
-                          <span className="text-[8px] font-bold text-[#00BFFF] uppercase">
+                        <div className="bg-[#000000]/10 border border-[#000000]/20 px-1.5 py-0.5 rounded-md">
+                          <span className="text-[8px] font-bold text-[#000000] uppercase">
                             {Math.round((1 - (Number(item.price_inr) / Number(item.mrp_inr))) * 100)}% OFF
                           </span>
                         </div>

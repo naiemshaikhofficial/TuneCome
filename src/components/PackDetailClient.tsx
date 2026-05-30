@@ -121,7 +121,7 @@ export function PackDetailClient({ initialPack }: { initialPack: any }) {
           {vId ? (
             <div className="space-y-4">
               <div className="flex items-center gap-2">
-                <div className="h-4 w-1 bg-[#00BFFF] rounded-sm" />
+                <div className="h-4 w-1 bg-[#000000] rounded-sm" />
                 <h2 className="text-sm font-bold uppercase tracking-widest text-slate-800">Demo Video</h2>
               </div>
               <div className="aspect-video rounded-md overflow-hidden border border-slate-100 bg-slate-50">
@@ -146,7 +146,7 @@ export function PackDetailClient({ initialPack }: { initialPack: any }) {
           {/* Technical Specs / Features */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-slate-100">
              <div className="space-y-3">
-                <h3 className="text-[10px] font-black uppercase tracking-widest text-[#00BFFF]">Technical Specifications</h3>
+                <h3 className="text-[10px] font-black uppercase tracking-widest text-[#000000]">Technical Specifications</h3>
                 <ul className="space-y-1.5 text-[9px] font-bold text-slate-400 uppercase tracking-wide">
                    <li>• Format: Professional 24-Bit / 44.1kHz WAV</li>
                    <li>• Compatibility: All DAWs (FL Studio, Ableton, Logic, etc.)</li>
@@ -180,7 +180,7 @@ export function PackDetailClient({ initialPack }: { initialPack: any }) {
                  title={pack.name} 
                  text={`Check out ${pack.name} on TuneCome!`} 
                  url={typeof window !== 'undefined' ? window.location.href : ''}
-                 className="w-8 h-8 bg-slate-900/60 backdrop-blur-xs border border-white/20 text-white flex items-center justify-center hover:bg-[#00BFFF] hover:border-[#00BFFF] rounded-md transition-all cursor-pointer"
+                 className="w-8 h-8 bg-slate-900/60 backdrop-blur-xs border border-white/20 text-white flex items-center justify-center hover:bg-[#000000] hover:border-[#000000] rounded-md transition-all cursor-pointer"
                />
             </div>
           </div>
@@ -221,9 +221,9 @@ export function PackDetailClient({ initialPack }: { initialPack: any }) {
                   ) : (
                     <div className="w-full p-6 bg-slate-50 border border-slate-100 rounded-md text-center space-y-2 relative overflow-hidden group">
                       <div className="absolute top-0 right-0 p-2 opacity-[0.03]">
-                        <Zap size={40} className="text-[#00BFFF]" />
+                        <Zap size={40} className="text-[#000000]" />
                       </div>
-                      <p className="text-[11px] font-black uppercase tracking-wider text-[#00BFFF] italic">Pre-ordered Successfully!</p>
+                      <p className="text-[11px] font-black uppercase tracking-wider text-[#000000] italic">Pre-ordered Successfully!</p>
                       <p className="text-[9px] font-bold text-slate-400 uppercase tracking-widest leading-relaxed">
                         This pack is currently in production.<br/>We will notify you via email once it's available for download.
                       </p>
@@ -240,7 +240,7 @@ export function PackDetailClient({ initialPack }: { initialPack: any }) {
                     )}
                     
                     {!pack.is_downloadable && isPreorderActive && (
-                      <div className="p-4 rounded-md border border-[#00BFFF] bg-slate-50 text-slate-800 mb-1">
+                      <div className="p-4 rounded-md border border-[#000000] bg-slate-50 text-slate-800 mb-1">
                         <div className="flex flex-col items-center gap-2">
                           <span className="text-[9px] font-bold uppercase tracking-widest text-slate-500">Offer Ends In:</span>
                           <div className="grid grid-cols-4 gap-2 text-center font-mono text-slate-800">
@@ -257,7 +257,7 @@ export function PackDetailClient({ initialPack }: { initialPack: any }) {
                               <span className="text-[6px] font-bold text-slate-400 uppercase tracking-wider">Mins</span>
                             </div>
                             <div className="bg-white p-1.5 border border-slate-200 rounded-md min-w-[36px]">
-                              <span className="text-base font-black block leading-none text-[#00BFFF]">{mounted ? String(seconds).padStart(2, '0') : '00'}</span>
+                              <span className="text-base font-black block leading-none text-[#000000]">{mounted ? String(seconds).padStart(2, '0') : '00'}</span>
                               <span className="text-[6px] font-bold text-slate-400 uppercase tracking-wider">Secs</span>
                             </div>
                           </div>
@@ -288,16 +288,16 @@ export function PackDetailClient({ initialPack }: { initialPack: any }) {
                     />
                     
                     {!pack.is_downloadable && (
-                      <div className="p-4 rounded-md border border-[#00BFFF] bg-slate-50 text-slate-800 text-left space-y-2 mt-2">
-                        <div className="flex items-center gap-2 text-[#00BFFF]">
+                      <div className="p-4 rounded-md border border-[#000000] bg-slate-50 text-slate-800 text-left space-y-2 mt-2">
+                        <div className="flex items-center gap-2 text-[#000000]">
                           <Clock size={12} className="animate-pulse" />
                           <span className="text-[10px] font-bold uppercase tracking-wider">Pre-order Notice</span>
                         </div>
                         <p className="text-[9px] font-bold text-slate-500 uppercase tracking-wider leading-relaxed">
-                          Please note: our sample packs are mostly curating <span className="text-[#00BFFF]">live session players</span>, taking up to <span className="text-slate-800 font-black">1-2 months to deliver</span>.
+                          Please note: our sample packs are mostly curating <span className="text-[#000000]">live session players</span>, taking up to <span className="text-slate-800 font-black">1-2 months to deliver</span>.
                         </p>
                         <p className="text-[9px] font-bold text-slate-450 uppercase tracking-wider leading-relaxed pt-1 border-t border-slate-200">
-                          📧 For availability queries, email us at <a href="mailto:support@tunecome.com" className="text-[#00BFFF] hover:underline font-bold lowercase">support@tunecome.com</a>
+                          📧 For availability queries, email us at <a href="mailto:support@tunecome.com" className="text-[#000000] hover:underline font-bold lowercase">support@tunecome.com</a>
                         </p>
                       </div>
                     )}
@@ -330,11 +330,11 @@ export function PackDetailClient({ initialPack }: { initialPack: any }) {
             
             <div className="flex items-center justify-center gap-6 py-3 border-t border-slate-100">
                <div className="flex items-center gap-1.5 text-[8px] font-bold text-slate-400 uppercase tracking-widest">
-                 <ShieldCheck size={12} className="text-[#00BFFF]" />
+                 <ShieldCheck size={12} className="text-[#000000]" />
                  100% Royalty Free
                </div>
                <div className="flex items-center gap-1.5 text-[8px] font-bold text-slate-400 uppercase tracking-widest">
-                 <Zap size={12} className="text-[#00BFFF]" />
+                 <Zap size={12} className="text-[#000000]" />
                  Immediate Access
                </div>
             </div>
@@ -345,7 +345,7 @@ export function PackDetailClient({ initialPack }: { initialPack: any }) {
       {/* FAQ Section */}
       <div className="pt-8 border-t border-slate-100 space-y-6">
         <div className="flex items-center gap-2">
-          <div className="h-4 w-1 bg-[#00BFFF] rounded-sm" />
+          <div className="h-4 w-1 bg-[#000000] rounded-sm" />
           <h2 className="text-sm font-black uppercase tracking-widest text-slate-800">Frequently Asked Questions</h2>
         </div>
 
@@ -357,17 +357,17 @@ export function PackDetailClient({ initialPack }: { initialPack: any }) {
                 className="w-full p-5 flex items-center justify-between group text-left cursor-pointer"
               >
                 <div className="flex items-center gap-3">
-                  <div className={`transition-colors duration-300 ${activeFaq === idx ? 'text-[#00BFFF]' : 'text-slate-300'}`}>
+                  <div className={`transition-colors duration-300 ${activeFaq === idx ? 'text-[#000000]' : 'text-slate-300'}`}>
                     <HelpCircle size={16} />
                   </div>
-                  <span className={`text-[10px] font-bold uppercase tracking-widest transition-colors duration-300 ${activeFaq === idx ? 'text-[#00BFFF]' : 'text-slate-700'}`}>
+                  <span className={`text-[10px] font-bold uppercase tracking-widest transition-colors duration-300 ${activeFaq === idx ? 'text-[#000000]' : 'text-slate-700'}`}>
                     {faq.q}
                   </span>
                 </div>
                 
                 <motion.div
                   animate={{ rotate: activeFaq === idx ? 45 : 0 }}
-                  className={`flex-shrink-0 transition-colors duration-300 ${activeFaq === idx ? 'text-[#00BFFF]' : 'text-slate-400'}`}
+                  className={`flex-shrink-0 transition-colors duration-300 ${activeFaq === idx ? 'text-[#000000]' : 'text-slate-400'}`}
                 >
                   <Plus size={16} />
                 </motion.div>
@@ -399,8 +399,8 @@ export function PackDetailClient({ initialPack }: { initialPack: any }) {
       <section className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-8 border-t border-slate-100 pb-8">
          <div className="space-y-2.5 p-5 bg-slate-50 border border-slate-100 rounded-md">
             <div className="flex items-center gap-2">
-               <ShieldCheck className="text-[#00BFFF]" size={16} />
-               <h3 className="text-[10px] font-bold uppercase tracking-widest text-[#00BFFF]">Pro Tip</h3>
+               <ShieldCheck className="text-[#000000]" size={16} />
+               <h3 className="text-[10px] font-bold uppercase tracking-widest text-[#000000]">Pro Tip</h3>
             </div>
             <p className="text-[9px] font-bold text-slate-400 leading-relaxed uppercase tracking-wider">
                For best results, use high-quality monitors or headphones to hear the full frequency range. Organize your library by bpm and key for faster workflow.
@@ -408,8 +408,8 @@ export function PackDetailClient({ initialPack }: { initialPack: any }) {
          </div>
          <div className="space-y-2.5 p-5 bg-slate-50 border border-slate-100 rounded-md">
             <div className="flex items-center gap-2">
-               <Download className="text-[#00BFFF]" size={16} />
-               <h3 className="text-[10px] font-bold uppercase tracking-widest text-[#00BFFF]">Installation Guide</h3>
+               <Download className="text-[#000000]" size={16} />
+               <h3 className="text-[10px] font-bold uppercase tracking-widest text-[#000000]">Installation Guide</h3>
             </div>
             <p className="text-[9px] font-bold text-slate-400 leading-relaxed uppercase tracking-wider">
                1. Extract the downloaded ZIP file.<br />

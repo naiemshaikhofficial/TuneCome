@@ -58,9 +58,6 @@ export default async function HomePage() {
 
       {/* Sleek, Premium Light Hero Section */}
       <section className="relative py-28 md:py-36 flex flex-col items-center justify-center text-center overflow-hidden bg-slate-50/50 border-b border-slate-100">
-        {/* Subtle Ambient Light Highlights */}
-        <div className="absolute top-0 right-0 w-1/3 h-2/3 bg-studio-yellow/5 blur-[120px] rounded-full z-0 pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-1/4 h-1/2 bg-blue-500/5 blur-[100px] rounded-full z-0 pointer-events-none" />
 
         <div className="container mx-auto px-4 max-w-4xl relative z-10 space-y-10">
           <div className="space-y-4">
@@ -107,7 +104,7 @@ export default async function HomePage() {
             </div>
             <Link 
               href="/browse" 
-              className="px-6 py-2.5 border border-slate-200 hover:border-studio-yellow hover:text-white hover:bg-studio-yellow transition-all text-[10px] font-black uppercase tracking-widest flex items-center gap-2 group rounded-md bg-[#f8fafc] text-slate-800"
+              className="px-6 py-2.5 border border-slate-200 hover:border-slate-900 hover:text-white hover:bg-slate-900 transition-all text-[10px] font-black uppercase tracking-widest flex items-center gap-2 group rounded-md bg-[#f8fafc] text-slate-800"
             >
               Browse All Packs
               <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
@@ -124,7 +121,7 @@ export default async function HomePage() {
           <div className="flex flex-col md:flex-row items-center md:items-end justify-between mb-12 gap-6 border-b border-slate-200 pb-6">
             <div className="space-y-3 text-center md:text-left">
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-slate-200 rounded-sm">
-                <Sparkles size={11} className="text-studio-yellow" />
+                <Sparkles size={11} className="text-slate-900" />
                 <span className="text-[8px] font-bold uppercase tracking-widest text-slate-550">VOCAL CHAINS &amp; DAW PRESETS</span>
               </div>
               <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-slate-900 leading-none">
@@ -134,7 +131,7 @@ export default async function HomePage() {
             </div>
             <Link 
               href="/browse?type=presets" 
-              className="px-6 py-2.5 border border-slate-200 hover:border-studio-yellow hover:text-white hover:bg-studio-yellow bg-white text-slate-800 transition-all text-[10px] font-black uppercase tracking-widest flex items-center gap-2 group rounded-md"
+              className="px-6 py-2.5 border border-slate-200 hover:border-slate-900 hover:text-white hover:bg-slate-900 bg-white text-slate-800 transition-all text-[10px] font-black uppercase tracking-widest flex items-center gap-2 group rounded-md"
             >
               Explore Presets
               <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />

@@ -45,7 +45,7 @@ export function PresetDetailClient({ preset, isFree, vId }: PresetDetailClientPr
            {vId ? (
               <div className="space-y-4">
                  <div className="flex items-center gap-2">
-                    <div className="h-4 w-1 bg-[#00BFFF] rounded-sm" />
+                    <div className="h-4 w-1 bg-[#000000] rounded-sm" />
                     <h2 className="text-sm font-bold uppercase tracking-widest text-slate-800">Preset Demo</h2>
                  </div>
                  <div className="aspect-video rounded-md overflow-hidden border border-slate-100 bg-slate-50">
@@ -98,7 +98,7 @@ export function PresetDetailClient({ preset, isFree, vId }: PresetDetailClientPr
                   </div>
                 )}
                 {preset.price_inr === 0 && (
-                   <div className="px-2.5 py-0.5 bg-[#00BFFF]/10 border border-[#00BFFF]/20 rounded-md text-[8px] font-bold uppercase tracking-wider text-[#0074e4]">
+                   <div className="px-2.5 py-0.5 bg-[#000000]/10 border border-[#000000]/20 rounded-md text-[8px] font-bold uppercase tracking-wider text-[#1a1a1a]">
                       COMMUNITY GIFT
                    </div>
                 )}
@@ -107,7 +107,7 @@ export function PresetDetailClient({ preset, isFree, vId }: PresetDetailClientPr
 
            {/* Compatibility */}
            <div className="space-y-3">
-              <h3 className="text-[10px] font-black uppercase tracking-widest text-[#00BFFF]">Compatibility</h3>
+              <h3 className="text-[10px] font-black uppercase tracking-widest text-[#000000]">Compatibility</h3>
               <div className="flex flex-wrap gap-2.5">
                  {preset.daws.map((daw: string) => (
                     <div key={daw} className="px-3 py-1.5 bg-slate-50 border border-slate-100 rounded-md flex items-center gap-2 text-slate-800 shadow-xs">
@@ -126,7 +126,7 @@ export function PresetDetailClient({ preset, isFree, vId }: PresetDetailClientPr
            <div className="pt-2">
               {isOwned ? (
                  <div className="space-y-3">
-                    <div className="flex items-center gap-2 text-[#00BFFF] font-bold uppercase tracking-widest text-[9px]">
+                    <div className="flex items-center gap-2 text-[#000000] font-bold uppercase tracking-widest text-[9px]">
                        <CheckCircle2 size={14} />
                        You own this preset
                     </div>
@@ -167,7 +167,7 @@ export function PresetDetailClient({ preset, isFree, vId }: PresetDetailClientPr
            {preset.plugins_used && preset.plugins_used.flat().length > 0 && (
              <div className="space-y-4 pt-6 border-t border-slate-100">
                 <div className="flex items-center gap-2">
-                   <div className="h-4 w-1 bg-[#00BFFF] rounded-sm" />
+                   <div className="h-4 w-1 bg-[#000000] rounded-sm" />
                    <h2 className="text-sm font-bold uppercase tracking-widest text-slate-800">Plugins Used</h2>
                 </div>
                 <div className="grid grid-cols-3 gap-3">
@@ -175,13 +175,13 @@ export function PresetDetailClient({ preset, isFree, vId }: PresetDetailClientPr
                       const colors = [
                         { bg: 'bg-slate-50', border: 'border-slate-200', text: 'text-slate-850' },
                         { bg: 'bg-slate-50', border: 'border-slate-200', text: 'text-slate-850' },
-                        { bg: 'bg-slate-50', border: 'border-[#00BFFF]/20', text: 'text-slate-850' }
+                        { bg: 'bg-slate-50', border: 'border-[#000000]/20', text: 'text-slate-850' }
                       ];
                       const style = colors[i % colors.length];
                       return (
                         <div 
                           key={plugin} 
-                          className={`p-2 ${style.bg} border ${style.border} flex flex-col gap-0.5 rounded-md transition-all hover:border-[#00BFFF]`}
+                          className={`p-2 ${style.bg} border ${style.border} flex flex-col gap-0.5 rounded-md transition-all hover:border-[#000000]`}
                         >
                            <span className={`text-[8px] md:text-[9px] font-bold uppercase ${style.text} tracking-tight leading-tight truncate`}>{plugin}</span>
                            <span className={`text-[5px] md:text-[6px] font-bold ${style.text} opacity-40 uppercase tracking-tighter`}>Required</span>
@@ -194,11 +194,11 @@ export function PresetDetailClient({ preset, isFree, vId }: PresetDetailClientPr
 
            <div className="flex items-center justify-center gap-6 py-3 border-t border-slate-100">
               <div className="flex items-center gap-1.5 text-[8px] font-bold text-slate-400 uppercase tracking-widest">
-                <ShieldCheck size={12} className="text-[#00BFFF]" />
+                <ShieldCheck size={12} className="text-[#000000]" />
                 100% Royalty Free
               </div>
               <div className="flex items-center gap-1.5 text-[8px] font-bold text-slate-400 uppercase tracking-widest">
-                <Zap size={12} className="text-[#00BFFF]" />
+                <Zap size={12} className="text-[#000000]" />
                 Immediate Access
               </div>
            </div>
@@ -208,7 +208,7 @@ export function PresetDetailClient({ preset, isFree, vId }: PresetDetailClientPr
       {/* FAQ Section */}
       <section className="pt-8 border-t border-slate-100 space-y-6">
          <div className="flex items-center gap-2">
-            <div className="h-4 w-1 bg-[#00BFFF] rounded-sm" />
+            <div className="h-4 w-1 bg-[#000000] rounded-sm" />
             <h2 className="text-sm font-black uppercase tracking-widest text-slate-800">Common Questions</h2>
          </div>
          
@@ -225,17 +225,17 @@ export function PresetDetailClient({ preset, isFree, vId }: PresetDetailClientPr
                   className="w-full p-5 flex items-center justify-between group text-left cursor-pointer"
                 >
                   <div className="flex items-center gap-3">
-                    <div className={`transition-colors duration-300 ${activeFaq === i ? 'text-[#00BFFF]' : 'text-slate-300'}`}>
+                    <div className={`transition-colors duration-300 ${activeFaq === i ? 'text-[#000000]' : 'text-slate-300'}`}>
                       <HelpCircle size={16} />
                     </div>
-                    <span className={`text-[10px] font-bold uppercase tracking-widest transition-colors duration-300 ${activeFaq === i ? 'text-[#00BFFF]' : 'text-slate-700'}`}>
+                    <span className={`text-[10px] font-bold uppercase tracking-widest transition-colors duration-300 ${activeFaq === i ? 'text-[#000000]' : 'text-slate-700'}`}>
                       {faq.q}
                     </span>
                   </div>
                   
                   <motion.div
                     animate={{ rotate: activeFaq === i ? 45 : 0 }}
-                    className={`flex-shrink-0 transition-colors duration-300 ${activeFaq === i ? 'text-[#00BFFF]' : 'text-slate-450'}`}
+                    className={`flex-shrink-0 transition-colors duration-300 ${activeFaq === i ? 'text-[#000000]' : 'text-slate-450'}`}
                   >
                     <Plus size={16} />
                   </motion.div>
@@ -267,8 +267,8 @@ export function PresetDetailClient({ preset, isFree, vId }: PresetDetailClientPr
       <section className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-8 border-t border-slate-100 pb-8">
          <div className="space-y-2.5 p-5 bg-slate-50 border border-slate-100 rounded-md">
             <div className="flex items-center gap-2">
-               <ShieldCheck className="text-[#00BFFF]" size={16} />
-               <h3 className="text-[10px] font-bold uppercase tracking-widest text-[#00BFFF]">Pro Tip</h3>
+               <ShieldCheck className="text-[#000000]" size={16} />
+               <h3 className="text-[10px] font-bold uppercase tracking-widest text-[#000000]">Pro Tip</h3>
             </div>
             <p className="text-[9px] font-bold text-slate-400 leading-relaxed uppercase tracking-wider">
                For best results, make sure you have the latest versions of both stock and external plugins installed. Always check your gain staging before applying vocal chains.
@@ -276,8 +276,8 @@ export function PresetDetailClient({ preset, isFree, vId }: PresetDetailClientPr
          </div>
          <div className="space-y-2.5 p-5 bg-slate-50 border border-slate-100 rounded-md">
             <div className="flex items-center gap-2">
-               <Download className="text-[#00BFFF]" size={16} />
-               <h3 className="text-[10px] font-bold uppercase tracking-widest text-[#00BFFF]">Installation Guide</h3>
+               <Download className="text-[#000000]" size={16} />
+               <h3 className="text-[10px] font-bold uppercase tracking-widest text-[#000000]">Installation Guide</h3>
             </div>
             <p className="text-[9px] font-bold text-slate-400 leading-relaxed uppercase tracking-wider">
                1. Extract the downloaded ZIP file.<br />

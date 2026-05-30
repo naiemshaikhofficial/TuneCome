@@ -408,7 +408,7 @@ export default function CheckoutPage() {
     return (
       <div className="min-h-[70vh] flex flex-col items-center justify-center space-y-6 text-center px-4 relative z-10 bg-white text-slate-800">
         <div className="relative mb-4 flex items-center justify-center">
-          <div className="w-16 h-16 bg-[#00BFFF]/10 rounded-full flex items-center justify-center text-[#00BFFF]">
+          <div className="w-16 h-16 bg-[#000000]/10 rounded-full flex items-center justify-center text-[#000000]">
             <ShoppingBag size={32} />
           </div>
         </div>
@@ -423,9 +423,9 @@ export default function CheckoutPage() {
         </div>
 
         <div className="max-w-md w-full p-6 bg-slate-50 border border-slate-100 rounded-md space-y-3 shadow-xs">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#00BFFF]/10 border border-[#00BFFF]/20 rounded-full">
-            <span className="w-2 h-2 rounded-full bg-[#00BFFF] animate-pulse" />
-            <span className="text-[8px] font-bold text-[#00BFFF] uppercase tracking-widest">INVOICE & ORDER CONFIRMED</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#000000]/10 border border-[#000000]/20 rounded-full">
+            <span className="w-2 h-2 rounded-full bg-[#000000] animate-pulse" />
+            <span className="text-[8px] font-bold text-[#000000] uppercase tracking-widest">INVOICE & ORDER CONFIRMED</span>
           </div>
 
           <p className="text-[10px] text-slate-600 font-bold uppercase tracking-wide leading-relaxed">
@@ -435,7 +435,7 @@ export default function CheckoutPage() {
           <div className="pt-3 border-t border-slate-100">
             <p className="text-[9px] text-slate-400 font-bold uppercase tracking-wider leading-relaxed">
               ℹ️ Your license keys and high-speed direct downloads are securely hosted inside your{' '}
-              <Link href="/library" className="text-[#00BFFF] hover:underline font-bold">
+              <Link href="/library" className="text-[#000000] hover:underline font-bold">
                 User Library / Vault
               </Link>{' '}
               at any time.
@@ -449,7 +449,7 @@ export default function CheckoutPage() {
           </Link>
           <p className="text-[9px] font-bold text-slate-300 uppercase tracking-widest mt-1">
             Need help? Contact support at{' '}
-            <a href="mailto:support@tunecome.com" className="text-[#00BFFF] hover:underline transition-colors">
+            <a href="mailto:support@tunecome.com" className="text-[#000000] hover:underline transition-colors">
               support@tunecome.com
             </a>
           </p>
@@ -477,9 +477,9 @@ export default function CheckoutPage() {
 
       <div className="container mx-auto px-4 pt-16 pb-24 relative z-10">
         <div className="flex flex-col items-center mb-10 text-center">
-          <div className="h-[3px] bg-[#00BFFF] w-16 mb-4" />
+          <div className="h-[3px] bg-[#000000] w-16 mb-4" />
           <h1 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-slate-900 leading-none">
-            SECURE <span className="text-[#00BFFF]">CHECKOUT</span>
+            SECURE <span className="text-[#000000]">CHECKOUT</span>
           </h1>
           <p className="text-[9px] font-bold text-slate-300 uppercase tracking-[0.3em] mt-3">
             Instant Digital Delivery / Global Access
@@ -518,7 +518,7 @@ export default function CheckoutPage() {
             <div id="billing-details-section" className="pt-8 space-y-6">
               <div className="flex items-center justify-between border-b border-slate-100 pb-3">
                 <div className="flex items-center gap-3">
-                  <div className="h-4 w-1 bg-[#00BFFF] rounded-sm" />
+                  <div className="h-4 w-1 bg-[#000000] rounded-sm" />
                   <h2 className="text-lg font-bold uppercase tracking-tight text-slate-800">Billing Information</h2>
                 </div>
                 <span className="text-[8px] font-bold uppercase tracking-widest text-slate-300">
@@ -617,7 +617,7 @@ export default function CheckoutPage() {
                       control: (base, state) => ({
                         ...base,
                         backgroundColor: 'rgba(248, 250, 252, 1)',
-                        borderColor: state.isFocused ? '#00BFFF' : (formErrors.country ? 'rgba(239, 68, 68, 0.5)' : 'rgba(226, 232, 240, 1)'),
+                        borderColor: state.isFocused ? '#000000' : (formErrors.country ? 'rgba(239, 68, 68, 0.5)' : 'rgba(226, 232, 240, 1)'),
                         borderRadius: '0.375rem',
                         height: '2.75rem',
                         fontSize: '11px',
@@ -626,7 +626,7 @@ export default function CheckoutPage() {
                         letterSpacing: '0.05em',
                         boxShadow: 'none',
                         '&:hover': {
-                          borderColor: state.isFocused ? '#00BFFF' : 'rgba(203, 213, 225, 1)',
+                          borderColor: state.isFocused ? '#000000' : 'rgba(203, 213, 225, 1)',
                         }
                       }),
                       menu: (base) => ({
@@ -639,12 +639,12 @@ export default function CheckoutPage() {
                       option: (base, state) => ({
                         ...base,
                         backgroundColor: state.isFocused ? 'rgba(0, 191, 255, 0.05)' : 'transparent',
-                        color: state.isFocused ? '#00BFFF' : 'rgba(71, 85, 105, 1)',
+                        color: state.isFocused ? '#000000' : 'rgba(71, 85, 105, 1)',
                         fontSize: '10px',
                         fontWeight: '700',
                         textTransform: 'uppercase',
                         '&:active': {
-                          backgroundColor: '#00BFFF',
+                          backgroundColor: '#000000',
                           color: '#fff'
                         }
                       }),
@@ -698,7 +698,7 @@ export default function CheckoutPage() {
                   <span>${total.toFixed(2)}</span>
                 </div>
                 {discount > 0 && (
-                  <div className="flex justify-between text-xs font-bold uppercase tracking-wider text-[#00BFFF]">
+                  <div className="flex justify-between text-xs font-bold uppercase tracking-wider text-[#000000]">
                     <span>Discount ({discount}%)</span>
                     <span>-${(total * discount / 100).toFixed(2)}</span>
                   </div>
@@ -731,21 +731,21 @@ export default function CheckoutPage() {
                   </button>
                 </div>
                 {couponError && <p className="text-[8px] font-bold text-red-500 uppercase tracking-widest">{couponError}</p>}
-                {discount > 0 && <p className="text-[8px] font-bold text-[#00BFFF] uppercase tracking-widest">Coupon Applied Successfully!</p>}
+                {discount > 0 && <p className="text-[8px] font-bold text-[#000000] uppercase tracking-widest">Coupon Applied Successfully!</p>}
               </div>
 
               {/* Pre-order warning notice */}
               {hasPreorder && (
-                <div className="p-4 rounded-md border border-[#00BFFF] bg-slate-50 text-left space-y-2.5 mt-2">
-                  <div className="flex items-center gap-2 text-[#00BFFF]">
+                <div className="p-4 rounded-md border border-[#000000] bg-slate-50 text-left space-y-2.5 mt-2">
+                  <div className="flex items-center gap-2 text-[#000000]">
                     <Clock size={12} className="animate-pulse" />
                     <span className="text-[9px] font-bold uppercase tracking-wider">Pre-order Notice</span>
                   </div>
                   <p className="text-[9px] font-bold text-slate-500 uppercase tracking-wider leading-relaxed">
-                    Some items in your cart are <span className="text-slate-800 font-black">pre-orders</span>. Our sounds are highly custom and hand-crafted, taking up to <span className="text-[#00BFFF]">1-2 months to fully deliver</span>.
+                    Some items in your cart are <span className="text-slate-800 font-black">pre-orders</span>. Our sounds are highly custom and hand-crafted, taking up to <span className="text-[#000000]">1-2 months to fully deliver</span>.
                   </p>
                   <p className="text-[9px] font-bold text-slate-400 uppercase tracking-wider leading-relaxed pt-1.5 border-t border-slate-100">
-                    📧 Reach us at <a href="mailto:support@tunecome.com" className="text-[#00BFFF] hover:underline font-bold lowercase">support@tunecome.com</a> for updates.
+                    📧 Reach us at <a href="mailto:support@tunecome.com" className="text-[#000000] hover:underline font-bold lowercase">support@tunecome.com</a> for updates.
                   </p>
                 </div>
               )}
@@ -793,7 +793,7 @@ export default function CheckoutPage() {
             {/* Trust Badges */}
             <div className="p-5 bg-slate-50 border border-slate-100 rounded-md space-y-4">
               <div className="flex items-center gap-2">
-                <div className="h-3 w-1 bg-[#00BFFF] rounded-sm" />
+                <div className="h-3 w-1 bg-[#000000] rounded-sm" />
                 <h3 className="text-[10px] font-bold uppercase tracking-widest text-slate-600">Why TuneCome?</h3>
               </div>
 
