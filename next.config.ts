@@ -41,13 +41,13 @@ const nextConfig: NextConfig = {
     const isDev = process.env.NODE_ENV === 'development';
     const csp = [
       "default-src 'self'",
-      `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://checkout.razorpay.com https://challenges.cloudflare.com https://widget.trustpilot.com`,
-      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+      `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://checkout.razorpay.com https://challenges.cloudflare.com https://widget.trustpilot.com https://accounts.google.com`,
+      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://accounts.google.com",
       "img-src 'self' https: data: blob:",
       "font-src 'self' https://fonts.gstatic.com data:",
-      `connect-src 'self' ${process.env.NEXT_PUBLIC_SUPABASE_URL || ''} wss://*.supabase.co https://*.supabase.co https://api.razorpay.com https://challenges.cloudflare.com`.trim(),
+      `connect-src 'self' ${process.env.NEXT_PUBLIC_SUPABASE_URL || ''} wss://*.supabase.co https://*.supabase.co https://api.razorpay.com https://challenges.cloudflare.com https://accounts.google.com`.trim(),
       "media-src 'self' blob: https:",
-      "frame-src 'self' https://challenges.cloudflare.com https://widget.trustpilot.com https://www.youtube.com https://www.youtube-nocookie.com https://api.razorpay.com",
+      "frame-src 'self' https://challenges.cloudflare.com https://widget.trustpilot.com https://www.youtube.com https://www.youtube-nocookie.com https://api.razorpay.com https://accounts.google.com",
       "object-src 'none'",
       "base-uri 'self'",
       "frame-ancestors 'none'",

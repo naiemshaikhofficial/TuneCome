@@ -22,29 +22,45 @@ export function AuthForm({ allowSignup = true, next: defaultNext }: { allowSignu
   const [password, setPassword] = useState('')
   const [strength, setStrength] = useState(0)
 
-  // 1. Initialize Google GSI library on mount
+  // 1. Dynamically load Google GSI script & initialize on mount
   useEffect(() => {
     if (typeof window === 'undefined') return
 
-    const tryInit = () => {
-      if ((window as any).google) {
-        initGoogleOneTap()
-        return true
-      }
-      return false
+    const GSI_SRC = 'https://accounts.google.com/gsi/client'
+
+    const loadGsiScript = (): Promise<void> => {
+      return new Promise((resolve, reject) => {
+        // Already loaded
+        if ((window as any).google?.accounts) {
+          resolve()
+          return
+        }
+        // Script tag already in DOM, wait for it
+        const existing = document.querySelector(`script[src="${GSI_SRC}"]`)
+        if (existing) {
+          existing.addEventListener('load', () => resolve())
+          existing.addEventListener('error', () => reject(new Error('GSI script failed')))
+          // If already loaded
+          if ((window as any).google?.accounts) resolve()
+          return
+        }
+        // Inject script
+        const script = document.createElement('script')
+        script.src = GSI_SRC
+        script.async = true
+        script.onload = () => resolve()
+        script.onerror = () => reject(new Error('GSI script failed to load'))
+        document.head.appendChild(script)
+      })
     }
 
-    if (!tryInit()) {
-      // Wait for the script to load with a timeout
-      let elapsed = 0
-      const interval = setInterval(() => {
-        elapsed += 200
-        if (tryInit() || elapsed > 8000) {
-          clearInterval(interval)
-        }
-      }, 200)
-      return () => clearInterval(interval)
-    }
+    loadGsiScript()
+      .then(() => {
+        initGoogleOneTap()
+      })
+      .catch((err) => {
+        console.warn('Could not load Google GSI:', err)
+      })
   }, [mode])
 
   const initGoogleOneTap = () => {
@@ -91,16 +107,32 @@ export function AuthForm({ allowSignup = true, next: defaultNext }: { allowSignu
       return
     }
 
-    // Wait for Google script if not yet loaded (up to 3 seconds)
-    if (!(window as any).google) {
+    // Dynamically load Google script if not yet available
+    if (!(window as any).google?.accounts) {
       setIsGoogleLoading(true)
-      let waited = 0
-      while (!(window as any).google && waited < 3000) {
-        await new Promise(r => setTimeout(r, 200))
-        waited += 200
-      }
-      if (!(window as any).google) {
-        setError('Could not load Google Auth. Please check your internet connection or disable ad-blockers and try again.')
+      try {
+        const GSI_SRC = 'https://accounts.google.com/gsi/client'
+        await new Promise<void>((resolve, reject) => {
+          if ((window as any).google?.accounts) { resolve(); return }
+          const existing = document.querySelector(`script[src="${GSI_SRC}"]`) as HTMLScriptElement
+          if (existing) {
+            if ((window as any).google?.accounts) { resolve(); return }
+            existing.addEventListener('load', () => resolve())
+            existing.addEventListener('error', () => reject())
+            // Timeout safety
+            setTimeout(() => reject(), 5000)
+            return
+          }
+          const s = document.createElement('script')
+          s.src = GSI_SRC
+          s.async = true
+          s.onload = () => resolve()
+          s.onerror = () => reject()
+          document.head.appendChild(s)
+          setTimeout(() => reject(), 5000)
+        })
+      } catch {
+        setError('Google Auth load nahi ho raha. Internet connection check karo aur retry karo.')
         setIsGoogleLoading(false)
         return
       }

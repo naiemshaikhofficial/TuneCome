@@ -121,10 +121,7 @@ export default async function RootLayout({
           src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" 
           strategy="afterInteractive" 
         />
-        <Script 
-          src="https://accounts.google.com/gsi/client" 
-          strategy="beforeInteractive"
-        />
+        
       </head>
       <body className={`${inter.className} antialiased min-h-screen flex flex-col text-white`}>
         <AuthProvider>
