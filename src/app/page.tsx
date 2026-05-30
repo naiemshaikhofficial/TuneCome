@@ -56,15 +56,15 @@ export default async function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
       />
 
-      {/* Sleek, Premium Light Hero Section */}
-      <section className="relative py-28 md:py-36 flex flex-col items-center justify-center text-center overflow-hidden bg-slate-50/50 border-b border-slate-100">
+      {/* Premium White Hero Section */}
+      <section className="relative py-28 md:py-36 flex flex-col items-center justify-center text-center overflow-hidden bg-white border-b border-slate-100">
 
         <div className="container mx-auto px-4 max-w-4xl relative z-10 space-y-10">
           <div className="space-y-4">
             <h1 className="text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tight text-slate-900 leading-tight">
               Find your sound.
             </h1>
-            <p className="text-xs sm:text-sm md:text-[14px] text-slate-500 font-bold uppercase tracking-[0.25em] max-w-xl mx-auto">
+            <p className="text-xs sm:text-sm md:text-[14px] text-slate-400 font-bold uppercase tracking-[0.25em] max-w-xl mx-auto">
               PRISTINE SAMPLE PACKS, LOOPS & PRESETS :: 100% ROYALTY-FREE
             </p>
           </div>
@@ -81,7 +81,7 @@ export default async function HomePage() {
               <Link 
                 key={tag} 
                 href={`/browse?q=${tag}`} 
-                className="px-3.5 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-black rounded-full border border-slate-200 transition-all cursor-pointer font-bold"
+                className="px-3.5 py-1.5 bg-slate-50 hover:bg-slate-100 text-slate-600 hover:text-black rounded-full border border-slate-200 transition-all cursor-pointer font-bold"
               >
                 {tag}
               </Link>

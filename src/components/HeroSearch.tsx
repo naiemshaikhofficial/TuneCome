@@ -94,7 +94,7 @@ export function HeroSearch() {
         onSubmit={handleSearch} 
         whileHover={{ scale: 1.03, y: -1 }}
         transition={{ type: "spring", stiffness: 450, damping: 18 }}
-        className="relative graffiti-input-box overflow-hidden"
+        className="relative overflow-hidden border border-slate-200 bg-white shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] rounded-md transition-all"
       >
         <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400">
           <Search size={16} />
@@ -105,14 +105,14 @@ export function HeroSearch() {
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => query.length >= 2 && setIsOpen(true)}
           placeholder={placeholderText}
-          className="w-full h-14 bg-transparent pl-12 pr-12 text-[10px] font-black uppercase tracking-widest focus:outline-none focus:bg-white/5 transition-all placeholder:text-slate-400 text-slate-900"
+          className="w-full h-14 bg-transparent pl-12 pr-12 text-[10px] font-black uppercase tracking-widest focus:outline-none transition-all placeholder:text-slate-450 text-slate-800"
         />
         <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2">
           {query && (
             <button
               type="button"
               onClick={() => { setQuery(''); setSuggestions([]); }}
-              className="text-slate-400 hover:text-slate-900"
+              className="text-slate-400 hover:text-black"
             >
               <X size={16} />
             </button>
