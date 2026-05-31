@@ -8,8 +8,6 @@ import { signIn, signUp, signInWithGoogleToken, forgotPassword } from '@/app/aut
 
 type AuthMode = 'login' | 'signup' | 'forgot'
 
-let gsiInitializedGlobal = false
-
 export function AuthForm({ allowSignup = true, next: defaultNext }: { allowSignup?: boolean, next?: string }) {
   const searchParams = useSearchParams()
   const router = useRouter()
@@ -25,8 +23,8 @@ export function AuthForm({ allowSignup = true, next: defaultNext }: { allowSignu
   const [strength, setStrength] = useState(0)
 
   // Track Google Identity Services loading and initialization status
-  const [gsiInitialized, setGsiInitialized] = useState(gsiInitializedGlobal)
-  const cleanupTimeoutRef = React.useRef<NodeJS.Timeout | null>(null)
+  const [gsiInitialized, setGsiInitialized] = useState(false)
+  const googleBtnRef = React.useRef<HTMLDivElement>(null)
 
   // 1. Dynamically load Google GSI script & initialize once on mount
   useEffect(() => {
@@ -60,23 +58,10 @@ export function AuthForm({ allowSignup = true, next: defaultNext }: { allowSignu
     }
 
     let active = true
-
-    // Cancel any scheduled cleanup timeout since we are mounting/remounting
-    if (cleanupTimeoutRef.current) {
-      clearTimeout(cleanupTimeoutRef.current)
-      cleanupTimeoutRef.current = null
-    }
-
     loadGsiScript()
       .then(() => {
         if (!active) return
         
-        // If already initialized globally, just set state and return early
-        if (gsiInitializedGlobal && (window as any).google?.accounts?.id) {
-          setGsiInitialized(true)
-          return
-        }
-
         const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID
         if (!clientId || !(window as any).google) return
 
@@ -84,14 +69,9 @@ export function AuthForm({ allowSignup = true, next: defaultNext }: { allowSignu
           const google = (window as any).google
           google.accounts.id.initialize({
             client_id: clientId,
-            callback: handleCredentialResponse,
-            cancel_on_tap_outside: true
+            callback: handleCredentialResponse
           })
-          gsiInitializedGlobal = true
           setGsiInitialized(true)
-          
-          // Trigger One Tap prompt once
-          google.accounts.id.prompt()
         } catch (err) {
           console.warn('Google GSI initialization failed:', err)
         }
@@ -102,32 +82,36 @@ export function AuthForm({ allowSignup = true, next: defaultNext }: { allowSignu
 
     return () => {
       active = false
-      // Schedule cleanup with a small timeout to avoid executing during React Strict Mode double-mount
-      cleanupTimeoutRef.current = setTimeout(() => {
-        try {
-          if ((window as any).google?.accounts?.id) {
-            (window as any).google.accounts.id.cancel()
-            gsiInitializedGlobal = false
-          }
-        } catch (err) {
-          console.warn('Error canceling Google One Tap:', err)
-        }
-      }, 200)
     }
   }, []) // Empty dependency array - runs exactly once on mount
 
-  // Cancel One Tap prompt if user switches to forgot password mode
+  // 2. Render the Google Sign-In button once GSI is initialized and DOM node is ready
   useEffect(() => {
-    if (mode === 'forgot') {
+    if (mode === 'forgot' || !gsiInitialized) return
+
+    // Small delay to ensure the DOM node is fully layouted and painted
+    const timer = setTimeout(() => {
+      if (!googleBtnRef.current) return
+      
+      // Avoid duplicate rendering
+      if (googleBtnRef.current.hasChildNodes()) return
+
       try {
-        if ((window as any).google?.accounts?.id) {
-          (window as any).google.accounts.id.cancel()
-        }
+        const google = (window as any).google
+        google.accounts.id.renderButton(googleBtnRef.current, {
+          theme: 'outline',
+          size: 'large',
+          width: 320,
+          text: 'continue_with',
+          shape: 'rectangular'
+        })
       } catch (err) {
-        console.warn('Error canceling Google One Tap:', err)
+        console.warn('Failed to render Google Sign-In button:', err)
       }
-    }
-  }, [mode])
+    }, 50)
+
+    return () => clearTimeout(timer)
+  }, [mode, gsiInitialized])
 
   const handleCredentialResponse = async (response: any) => {
     setIsGoogleLoading(true)
@@ -146,27 +130,6 @@ export function AuthForm({ allowSignup = true, next: defaultNext }: { allowSignu
       setIsGoogleLoading(false)
     }
   }
-
-  // React Callback Ref to handle mounting/unmounting of the official Google Sign-In button container
-  const googleButtonRef = React.useCallback((node: HTMLDivElement | null) => {
-    if (node && gsiInitialized) {
-      // Avoid rendering multiple times on the same DOM element
-      if (node.hasChildNodes()) return
-
-      try {
-        const google = (window as any).google
-        google.accounts.id.renderButton(node, {
-          theme: 'outline',
-          size: 'large',
-          width: 320,
-          text: 'continue_with',
-          shape: 'rectangular'
-        })
-      } catch (err) {
-        console.warn('Failed to render Google Sign-In button:', err)
-      }
-    }
-  }, [gsiInitialized])
 
   const checkStrength = (pass: string) => {
     let s = 0
@@ -227,7 +190,7 @@ export function AuthForm({ allowSignup = true, next: defaultNext }: { allowSignu
                 <span className="text-slate-400 text-xs font-semibold uppercase tracking-wider">Loading Google Auth...</span>
               </div>
             ) : (
-              <div ref={googleButtonRef} />
+              <div ref={googleBtnRef} className="w-[320px] h-11 flex justify-center" />
             )}
           </div>
 
