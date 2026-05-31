@@ -8,6 +8,8 @@ import { signIn, signUp, signInWithGoogleToken, forgotPassword } from '@/app/aut
 
 type AuthMode = 'login' | 'signup' | 'forgot'
 
+let gsiInitializedGlobal = false
+
 export function AuthForm({ allowSignup = true, next: defaultNext }: { allowSignup?: boolean, next?: string }) {
   const searchParams = useSearchParams()
   const router = useRouter()
@@ -22,7 +24,11 @@ export function AuthForm({ allowSignup = true, next: defaultNext }: { allowSignu
   const [password, setPassword] = useState('')
   const [strength, setStrength] = useState(0)
 
-  // 1. Dynamically load Google GSI script & initialize on mount
+  // Track Google Identity Services loading and initialization status
+  const [gsiInitialized, setGsiInitialized] = useState(gsiInitializedGlobal)
+  const cleanupTimeoutRef = React.useRef<NodeJS.Timeout | null>(null)
+
+  // 1. Dynamically load Google GSI script & initialize once on mount
   useEffect(() => {
     if (typeof window === 'undefined') return
 
@@ -30,21 +36,20 @@ export function AuthForm({ allowSignup = true, next: defaultNext }: { allowSignu
 
     const loadGsiScript = (): Promise<void> => {
       return new Promise((resolve, reject) => {
-        // Already loaded
         if ((window as any).google?.accounts) {
           resolve()
           return
         }
-        // Script tag already in DOM, wait for it
         const existing = document.querySelector(`script[src="${GSI_SRC}"]`)
         if (existing) {
+          if ((window as any).google?.accounts) {
+            resolve()
+            return
+          }
           existing.addEventListener('load', () => resolve())
           existing.addEventListener('error', () => reject(new Error('GSI script failed')))
-          // If already loaded
-          if ((window as any).google?.accounts) resolve()
           return
         }
-        // Inject script
         const script = document.createElement('script')
         script.src = GSI_SRC
         script.async = true
@@ -54,32 +59,75 @@ export function AuthForm({ allowSignup = true, next: defaultNext }: { allowSignu
       })
     }
 
+    let active = true
+
+    // Cancel any scheduled cleanup timeout since we are mounting/remounting
+    if (cleanupTimeoutRef.current) {
+      clearTimeout(cleanupTimeoutRef.current)
+      cleanupTimeoutRef.current = null
+    }
+
     loadGsiScript()
       .then(() => {
-        initGoogleOneTap()
+        if (!active) return
+        
+        // If already initialized globally, just set state and return early
+        if (gsiInitializedGlobal && (window as any).google?.accounts?.id) {
+          setGsiInitialized(true)
+          return
+        }
+
+        const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID
+        if (!clientId || !(window as any).google) return
+
+        try {
+          const google = (window as any).google
+          google.accounts.id.initialize({
+            client_id: clientId,
+            callback: handleCredentialResponse,
+            cancel_on_tap_outside: true
+          })
+          gsiInitializedGlobal = true
+          setGsiInitialized(true)
+          
+          // Trigger One Tap prompt once
+          google.accounts.id.prompt()
+        } catch (err) {
+          console.warn('Google GSI initialization failed:', err)
+        }
       })
       .catch((err) => {
         console.warn('Could not load Google GSI:', err)
       })
-  }, [mode])
 
-  const initGoogleOneTap = () => {
-    const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID
-    if (!clientId || !(window as any).google) return
-
-    try {
-      const google = (window as any).google
-      google.accounts.id.initialize({
-        client_id: clientId,
-        callback: handleCredentialResponse,
-        cancel_on_tap_outside: true
-      })
-      // Trigger subtle prompt silently in background
-      google.accounts.id.prompt()
-    } catch (err) {
-      console.warn('Google One Tap init failed', err)
+    return () => {
+      active = false
+      // Schedule cleanup with a small timeout to avoid executing during React Strict Mode double-mount
+      cleanupTimeoutRef.current = setTimeout(() => {
+        try {
+          if ((window as any).google?.accounts?.id) {
+            (window as any).google.accounts.id.cancel()
+            gsiInitializedGlobal = false
+          }
+        } catch (err) {
+          console.warn('Error canceling Google One Tap:', err)
+        }
+      }, 200)
     }
-  }
+  }, []) // Empty dependency array - runs exactly once on mount
+
+  // Cancel One Tap prompt if user switches to forgot password mode
+  useEffect(() => {
+    if (mode === 'forgot') {
+      try {
+        if ((window as any).google?.accounts?.id) {
+          (window as any).google.accounts.id.cancel()
+        }
+      } catch (err) {
+        console.warn('Error canceling Google One Tap:', err)
+      }
+    }
+  }, [mode])
 
   const handleCredentialResponse = async (response: any) => {
     setIsGoogleLoading(true)
@@ -99,77 +147,26 @@ export function AuthForm({ allowSignup = true, next: defaultNext }: { allowSignu
     }
   }
 
-  const handleGoogleLoginExplicit = async () => {
-    setError(null)
-    const clientId = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID
-    if (!clientId) {
-      setError('Google Client ID is missing. Add NEXT_PUBLIC_GOOGLE_CLIENT_ID to environment variables.')
-      return
-    }
+  // React Callback Ref to handle mounting/unmounting of the official Google Sign-In button container
+  const googleButtonRef = React.useCallback((node: HTMLDivElement | null) => {
+    if (node && gsiInitialized) {
+      // Avoid rendering multiple times on the same DOM element
+      if (node.hasChildNodes()) return
 
-    // Dynamically load Google script if not yet available
-    if (!(window as any).google?.accounts) {
-      setIsGoogleLoading(true)
       try {
-        const GSI_SRC = 'https://accounts.google.com/gsi/client'
-        await new Promise<void>((resolve, reject) => {
-          if ((window as any).google?.accounts) { resolve(); return }
-          const existing = document.querySelector(`script[src="${GSI_SRC}"]`) as HTMLScriptElement
-          if (existing) {
-            if ((window as any).google?.accounts) { resolve(); return }
-            existing.addEventListener('load', () => resolve())
-            existing.addEventListener('error', () => reject())
-            // Timeout safety
-            setTimeout(() => reject(), 5000)
-            return
-          }
-          const s = document.createElement('script')
-          s.src = GSI_SRC
-          s.async = true
-          s.onload = () => resolve()
-          s.onerror = () => reject()
-          document.head.appendChild(s)
-          setTimeout(() => reject(), 5000)
-        })
-      } catch {
-        setError('Google Auth load nahi ho raha. Internet connection check karo aur retry karo.')
-        setIsGoogleLoading(false)
-        return
-      }
-    }
-
-    setIsGoogleLoading(true)
-    try {
-      const google = (window as any).google
-      google.accounts.id.initialize({
-        client_id: clientId,
-        callback: handleCredentialResponse
-      })
-
-      // Render native hidden login button container and trigger click programmatically
-      const container = document.getElementById('google-btn-container')
-      if (container) {
-        google.accounts.id.renderButton(container, {
+        const google = (window as any).google
+        google.accounts.id.renderButton(node, {
           theme: 'outline',
           size: 'large',
-          width: 320
+          width: 320,
+          text: 'continue_with',
+          shape: 'rectangular'
         })
-        // Small delay for button rendering
-        await new Promise(r => setTimeout(r, 100))
-        const googleButton = container.querySelector('div[role="button"]') as HTMLElement
-        if (googleButton) {
-          googleButton.click()
-        } else {
-          // If programmatic click is blocked, show the container visibly so they can click
-          container.style.display = 'flex'
-          setIsGoogleLoading(false)
-        }
+      } catch (err) {
+        console.warn('Failed to render Google Sign-In button:', err)
       }
-    } catch (err: any) {
-      setError(err.message || 'Failed to initialize Google login popup')
-      setIsGoogleLoading(false)
     }
-  }
+  }, [gsiInitialized])
 
   const checkStrength = (pass: string) => {
     let s = 0
@@ -220,31 +217,18 @@ export function AuthForm({ allowSignup = true, next: defaultNext }: { allowSignu
 
   return (
     <div className="w-full space-y-6">
-      {/* Dynamic Hidden Container for Native Google Authentication popup trigger */}
-      <div id="google-btn-container" style={{ display: 'none' }} className="justify-center py-2" />
-
       {/* Social Login Button */}
       {mode !== 'forgot' && (
         <>
-          <div className="grid grid-cols-1 gap-3">
-            <button 
-              type="button"
-              onClick={handleGoogleLoginExplicit}
-              disabled={loading || isGoogleLoading}
-              className="w-full h-11 bg-white text-slate-900 border border-slate-200 font-bold rounded-md text-xs flex items-center justify-center gap-3 hover:bg-slate-50 transition-all disabled:opacity-50"
-            >
-              {isGoogleLoading ? (
-                <Loader2 className="animate-spin text-black" size={16} />
-              ) : (
-                <svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
-                  <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
-                  <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
-                  <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
-                </svg>
-              )}
-              Continue with Google
-            </button>
+          <div className="w-full flex justify-center py-1 min-h-[44px]">
+            {!gsiInitialized ? (
+              <div className="w-[320px] h-11 bg-white border border-slate-200 rounded-md flex items-center justify-center gap-3 animate-pulse">
+                <Loader2 className="animate-spin text-slate-400" size={16} />
+                <span className="text-slate-400 text-xs font-semibold uppercase tracking-wider">Loading Google Auth...</span>
+              </div>
+            ) : (
+              <div ref={googleButtonRef} />
+            )}
           </div>
 
           <div className="relative flex items-center justify-center py-1">
